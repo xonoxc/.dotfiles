@@ -92,7 +92,7 @@ set -x PATH $HOME/.cargo/bin $PATH
 bind \t accept-autosuggestion
 
 #setting up some of my alias 
-alias vim="nvim"
+alias v="nvim"
 alias ls="exa --icons"
 alias fd='cd ~ && cd $(find . -type d 2>/dev/null | fzf --preview "tree -aC {} | head -n 20" --prompt "Select directory: " --height 40% --border --reverse)'
 alias sd="cd ~ && cd \$(find . -type d | sed 's|^\./||' | fzf)"
@@ -125,6 +125,8 @@ set -U fish_user_paths $PYENV_ROOT/bin $fish_user_paths
 
 pyenv init - | source
 
+# changing default editor
+set -gx EDITOR "nvim"
 
 
 # sourcing various packages 
