@@ -66,6 +66,12 @@ function dotfiles
 end
 
 
+
+function fish_user_key_bindings
+    bind \cr fzf_history_widget
+end
+
+
 # Start SSH agent if not already running
 # if not pgrep -u $USER ssh-agent > /dev/null
 #     eval (ssh-agent -c)
