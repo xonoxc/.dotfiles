@@ -107,10 +107,10 @@ alias ll="ls -alF"
 alias l='ls -CF'
 alias cl="clear"
 alias l="ls -CF"
+alias .files="cd ~/.dotfiles"
 
 # shell path variables 
 set -x PATH $PATH $HOME/.config/composer/vendor/bin
-set -x  PATH $PATH /usr/bin/elixir
 
 #sdk man config
 set -U fish_user_paths $HOME/.sdkman
