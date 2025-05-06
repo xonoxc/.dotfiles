@@ -70,7 +70,7 @@ window#waybar {
   padding: 0.25rem 0.75rem;
   margin: 1px 6px;
   background-color: rgba(15, 16, 20, 1);
-  border-radius: 8px;
+  border-radius: 5px;
   box-shadow: 1 1 3 0.5px #151515;
 }
 
@@ -207,6 +207,7 @@ window#waybar {
 #workspaces button.active {
   border-bottom: 1px solid #161717;
   margin-bottom: 1px;
+  background-color: rgba(15, 16, 20, 1);
   padding-left: 0;
 }
 
@@ -226,8 +227,8 @@ window#waybar {
   margin-right: 10px;
 }
 
-#backlight.icon {
-  padding-right: 1px;
+#backlight {
+  padding-right: 10px;
   font-size: 13px;
 }
 
@@ -237,4 +238,13 @@ window#waybar {
   font-size: 11.2px;
   color: #cccccc;
   background-color: #0f1014;
+}
+
+#custom-cava {
+  color: #8fbc8f;
+  border-left: 0px;
+  border-right: 0px;
+  padding-bottom: 6px;
+  font-family: "bargraph";
+  font-size: 22px;
 }
