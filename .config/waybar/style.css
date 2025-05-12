@@ -61,6 +61,7 @@ window#waybar {
 #pulseaudio,
 #temperature,
 #tray,
+#power-profiles-daemon,
 #idle_inhibitor,
 #window,
 #custom-power,
@@ -247,4 +248,8 @@ window#waybar {
   padding-bottom: 6px;
   font-family: "bargraph";
   font-size: 22px;
+}
+
+#power-profiles-daemon {
+  color: whitesmoke;
 }

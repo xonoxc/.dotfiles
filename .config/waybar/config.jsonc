@@ -1,13 +1,14 @@
 // Global 
 {
 	"layer": "top",
-	"position": "top",
+	"position": "bottom",
 	"margin": 2,
 	"height": 30,
 	"modules-left": [
 		"custom/media",
 		"hyprland/workspaces",
 		"hyprland/window",
+		"power-profiles-daemon",
 	],
 	"modules-center": [
 		"clock",
@@ -56,6 +57,17 @@
 		"interval": 10,
 		"format": " {:%H:%M} ",
 		"tooltip-format": "{:%e %B %Y}"
+	},
+	"power-profiles-daemon": {
+		"format": "{icon} {profile}",
+		"tooltip-format": "Power profile: {profile}\nDriver: {driver}",
+		"tooltip": false,
+		"format-icons": {
+			"default": "💀",
+			"performance": "💀",
+			"balanced": "🕸",
+			"power-saver": ""
+		}
 	},
 	"cpu": {
 		"interval": 5,
