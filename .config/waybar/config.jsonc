@@ -4,6 +4,7 @@
 	"position": "bottom",
 	"margin": 2,
 	"height": 30,
+	"start_hidden": true,
 	"modules-left": [
 		"custom/media",
 		"hyprland/workspaces",
