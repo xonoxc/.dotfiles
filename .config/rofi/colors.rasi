@@ -5,7 +5,7 @@
     foreground:     #f0f0f0;
     selected:       #62AEEFFF;
     active:         #98C379FF;
-    urgent:         #E06B74FF;
+    urgent:         #cccccccc;
 }
 
 
