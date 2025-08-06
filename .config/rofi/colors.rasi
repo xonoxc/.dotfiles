@@ -1,11 +1,8 @@
-
 * {
-    background:     #0f0f0f;
-    background-alt: #101010FF;
-    foreground:     #f0f0f0;
-    selected:       #62AEEFFF;
-    active:         #98C379FF;
-    urgent:         #cccccccc;
+    background:     #0f0f0f;      /* calm dark base */
+    background-alt: #262626;      /* slightly lighter for alt bg */
+    foreground:     #f0f0f0;      /* bright and snowy white */
+    selected:       #a39ec4FF;    /* soft lavender/blueish highlight */
+    active:         #9ec49fFF;    /* gentle pastel green */
+    urgent:         #c49ea0FF;    /* calm alert red */
 }
-
-
