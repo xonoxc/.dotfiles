@@ -1,12 +1,10 @@
-/*Arc-Dark Color Scheme */
 @keyframes blink-warning {
   70% {
     color: white;
   }
-
   to {
     color: white;
-    background-color: orange;
+    background-color: #555;
   }
 }
 
@@ -14,41 +12,32 @@
   70% {
     color: white;
   }
-
   to {
     color: white;
-    background-color: red;
+    background-color: #333;
   }
 }
 
-/* -----------------------------------------------------------------------------
- * Base styles
- * -------------------------------------------------------------------------- */
-
-/* Reset all styles */
+/* Reset */
 * {
   border: none;
   border-radius: 0;
   min-height: 0;
   margin: 0;
   padding: 0;
-  color: #66aced;
+  color: #ccc;
 }
 
-/* The whole bar */
+/* Bar */
 window#waybar {
-  /* color: #dfdfdf; */
-  /* background-color: rgba(0,0,0,0.8); */
-  /* background-color: rgba(8,0,37,0.85); */
-  background-color: rgba(15, 16, 20, 0);
-  /* font-family: JetBrains Mono Nerd Font; */
+  background-color: rgba(20, 20, 20, 0);
   font-family: "SF Mono";
+  padding: 0.25rem 0.5rem;
   font-size: 12px;
   font-weight: bold;
-  /* border-radius: 22px; */
 }
 
-/* Every modules */
+/* Modules */
 #battery,
 #clock,
 #backlight,
@@ -62,6 +51,7 @@ window#waybar {
 #temperature,
 #tray,
 #power-profiles-daemon,
+#notification,
 #idle_inhibitor,
 #window,
 #custom-power,
@@ -70,36 +60,31 @@ window#waybar {
 #custom-PBPbattery {
   padding: 0.25rem 0.75rem;
   margin: 1px 6px;
-  background-color: rgba(15, 16, 20, 1);
+  background-color: #1a1a1a;
   border-radius: 8px;
-  box-shadow: 1 1 3 0.5px #151515;
+  box-shadow: 1px 1px 3px #111;
 }
 
-/* -----------------------------------------------------------------------------
- * Modules styles
- * -------------------------------------------------------------------------- */
-
-#clock {
-  /* color: #ff4499; */
-  color: #73daca;
-}
-
+/* Monochrome Colors */
+#clock,
+#cpu,
+#memory,
+#window,
+#custom-media,
+#pulseaudio,
+#temperature,
+#backlight,
+#power-profiles-daemon,
 #custom-weather {
-  color: #ff4499;
-}
-
-#battery {
-  animation-timing-function: linear;
-  animation-iteration-count: infinite;
-  animation-direction: alternate;
+  color: #e0e0e0;
 }
 
 #battery.warning {
-  color: orange;
+  color: #999;
 }
 
 #battery.critical {
-  color: red;
+  color: #666;
 }
 
 #battery.warning.discharging {
@@ -112,109 +97,53 @@ window#waybar {
   animation-duration: 2s;
 }
 
-#cpu {
-  color: #f7768e;
+#cpu.warning,
+#memory.warning,
+#network.disconnected {
+  color: #aaa;
 }
 
-#cpu.warning {
-  color: orange;
-}
-
-#cpu.critical {
-  color: red;
-}
-
-#memory {
-  animation-timing-function: linear;
-  animation-iteration-count: infinite;
-  animation-direction: alternate;
-  color: #f7768e;
-}
-
-#memory.warning {
-  color: orange;
-}
-
-#memory.critical {
-  color: red;
+#cpu.critical,
+#memory.critical,
+#temperature.critical {
+  color: #777;
   animation-name: blink-critical;
   animation-duration: 2s;
-  padding-left: 5px;
-  padding-right: 5px;
 }
 
 #mode {
-  /* background: @highlight; */
-  /* background: #dfdfdf; */
-  border-bottom: 3px transparent;
-  color: #ff4499;
+  color: #f0f0f0;
   margin-left: 5px;
   padding: 7px;
 }
 
-#network.disconnected {
-  color: orange;
-}
-
 #pulseaudio {
-  color: #bb9af7;
-  border-left: 0px;
-  border-right: 0px;
-  margin-right: 0;
   border-radius: 8px 0 0 8px;
 }
 
-/* #pulseaudio.muted { */
-/*     color: #ff4499; */
-/* } */
-/**/
 #pulseaudio.microphone {
-  border-left: 0px;
-  border-right: 0px;
-  margin-left: 0;
-  padding-left: 0;
   border-radius: 0 8px 8px 0;
-}
-
-/* #pulseaudio.microphone.muted { */
-/*     color: #ff4499; */
-/* } */
-
-#temperature.critical {
-  color: red;
-}
-
-#window {
-  font-weight: bold;
-  color: #f7768e;
-}
-
-#custom-media {
-  color: #bb9af7;
 }
 
 #workspaces {
   font-size: 12px;
-  background-color: rgba(15, 16, 20, 1);
+  background-color: #1a1a1a;
   border-radius: 8px;
 }
 
 #workspaces button {
   border-bottom: 3px solid transparent;
-  margin-bottom: 0px;
-  color: #dfdfdf;
+  color: #ccc;
 }
 
 #workspaces button.active {
-  border-bottom: 1px solid #161717;
-  margin-bottom: 1px;
-  background-color: rgba(15, 16, 20, 1);
-  padding-left: 0;
+  border-bottom: 1px solid #666;
+  background-color: #1a1a1a;
 }
 
 #workspaces button.urgent {
-  border-color: #c9545d;
-  color: #c9545d;
+  border-color: #999;
+  color: #999;
 }
 
 #custom-power {
@@ -226,30 +155,19 @@ window#waybar {
   font-size: 15px;
   margin-left: 15px;
   margin-right: 10px;
-}
-
-#backlight {
-  padding-right: 10px;
-  font-size: 13px;
+  color: #eee;
 }
 
 #tray menu * {
   font-weight: bold;
   padding: 3px;
   font-size: 11.2px;
-  color: #cccccc;
-  background-color: #0f1014;
+  color: #ccc;
+  background-color: #1a1a1a;
 }
 
 #custom-cava {
-  color: #8fbc8f;
-  border-left: 0px;
-  border-right: 0px;
-  padding-bottom: 6px;
+  color: #bbb;
   font-family: "bargraph";
   font-size: 22px;
-}
-
-#power-profiles-daemon {
-  color: whitesmoke;
 }

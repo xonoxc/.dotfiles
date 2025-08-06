@@ -2,7 +2,7 @@
 {
 	"layer": "top",
 	"position": "bottom",
-	"margin": 2,
+	"margin": 0,
 	"height": 30,
 	"start_hidden": true,
 	"modules-left": [
