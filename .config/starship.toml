@@ -1,9 +1,12 @@
+
 [character]
-success_symbol = "[➜](bold green)"
-error_symbol = "[➜](bold white)"
+success_symbol = "[➜:](bold green)"
+error_symbol = "[➜:](bold white)"
 
 [bun]
 format = "[ $version ](bold blue)"
+
+
 
 [aws]
 symbol = "  "
@@ -22,6 +25,8 @@ symbol = " "
 
 [directory]
 read_only = " 󰌾"
+home_symbol = " "
+truncation_length = 1
 
 [docker_context]
 symbol = " "
@@ -37,8 +42,6 @@ symbol = " "
 [fossil_branch]
 symbol = " "
 
-[git_branch]
-symbol = ""
 
 [golang]
 symbol = " "
@@ -146,3 +149,4 @@ symbol = " "
 
 [scala]
 symbol = " "
+
