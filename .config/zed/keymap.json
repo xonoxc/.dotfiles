@@ -1,0 +1,28 @@
+[
+  {
+    "context": "Editor && vim_mode == insert && !menu",
+    "bindings": {
+      "j k": "vim::SwitchToNormalMode"
+    }
+  },
+  {
+    "context": "Editor && vim_mode == normal",
+    "bindings": {
+      "space l a": "editor::ToggleCodeActions"
+    }
+  },
+  {
+    "context": "Workspace",
+    "bindings": {
+      "space f c": "theme_selector::Toggle",
+      "space f f": "file_finder::Toggle",
+      "ctrl-shift-b": "workspace::ToggleLeftDock"
+    }
+  },
+  {
+    "context": "Worspace && vim_mode == normal",
+    "bindings": {
+      "space t": "workspace::ToggleBottomDock"
+    }
+  }
+]
