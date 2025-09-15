@@ -90,12 +90,15 @@ set -x BROWSER "brave"
 set -x HYPRSHOT_DIR "/home/xonoxc/Pictures"
 set -x GOPATH $HOME/go
 set -x PATH $PATH $GOPATH/bin
+
 set -x PATH $HOME/Android/Sdk/platform-tools $PATH
+set -x PATH $HOME/Android/Sdk/cmdline-tools/latest/bin $PATH
+
 set -x PATH $HOME/.cargo/bin $PATH
 
 
 # accepting autosuggestions using TAB 
-bind \t accept-autosuggestion
+bind -M insert \t accept-autosuggestion
 
 #setting up some of my alias 
 alias v="nvim"
@@ -109,6 +112,9 @@ alias cl="clear"
 alias l="ls -CF"
 alias .files="cd ~/.dotfiles"
 
+
+
+
 # shell path variables 
 set -x PATH $PATH $HOME/.config/composer/vendor/bin
 
@@ -116,14 +122,13 @@ set -x PATH $PATH $HOME/.config/composer/vendor/bin
 set -U fish_user_paths $HOME/.sdkman
 set -g __sdkman_custom_dir $HOME/.sdkman/bin/sdkman-init.sh
 
-#android sdk path
-set -x ANDROID_HOME "$HOME/Android/Sdk"
 # react native packager hostname
 set -x REACT_NATIVE_PACKAGER_HOSTNAME 192.168.1.40
 
 #shell path for elixir-ls
 set -gx PATH $PATH $HOME/.local/share/nvim/mason/bin
 set -gx PATH $PATH $HOME/.local/bin
+
 
 set -Ux PYENV_ROOT $HOME/.pyenv
 set -U fish_user_paths $PYENV_ROOT/bin $fish_user_paths
@@ -143,9 +148,23 @@ set -gx EDITOR "nvim"
 set --export BUN_INSTALL "$HOME/.bun"
 set --export PATH $BUN_INSTALL/bin $PATH
 
+
+set -x MANPAGER "sh -c 'col -bx | bat -l man -p'"
+
 # pnpm
 set -gx PNPM_HOME "/home/xonoxc/.local/share/pnpm"
 if not string match -q -- $PNPM_HOME $PATH
   set -gx PATH "$PNPM_HOME" $PATH
 end
 # pnpm end
+
+
+
+set -xU GEMINI_API_KEY "AIzaSyBm18GXHeUEizl77WI3oh05iM2wT9l_yGU"
+
+
+
+# bind
+bind --mode default yy fish_clipboard_copy
+bind --mode visual y fish_clipboard_copy
+bind p fish_clipboard_paste
