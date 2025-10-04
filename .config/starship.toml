@@ -2,6 +2,7 @@
 [character]
 success_symbol = "[➜:](bold green)"
 error_symbol = "[➜:](bold white)"
+vicmd_symbol = "[➜:](bold blue)" 
 
 [bun]
 format = "[ $version ](bold blue)"
