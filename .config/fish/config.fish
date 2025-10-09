@@ -86,7 +86,7 @@ end
 
 
 # shell variables 
-set -x BROWSER "brave"
+set -x BROWSER "zen-browser"
 set -x HYPRSHOT_DIR "/home/xonoxc/Pictures"
 set -x GOPATH $HOME/go
 set -x PATH $PATH $GOPATH/bin
@@ -164,7 +164,8 @@ set -xU GEMINI_API_KEY "AIzaSyBm18GXHeUEizl77WI3oh05iM2wT9l_yGU"
 
 
 
-# bind
-bind --mode default yy fish_clipboard_copy
-bind --mode visual y fish_clipboard_copy
-bind p fish_clipboard_paste
+#binding the ctrl+e for to open superfile
+for mode in (bind -L)
+    bind -M $mode \ce spf
+end
+
