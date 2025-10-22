@@ -32,6 +32,7 @@
 window#waybar {
   background-color: rgba(20, 20, 20, 0);
   font-family: "SF Mono";
+  background-size: cover;
   font-size: 12px;
   font-weight: bold;
 }
@@ -54,13 +55,16 @@ window#waybar {
 #idle_inhibitor,
 #window,
 #custom-power,
+#custom-updates,
 #workspaces,
 #custom-media,
 #custom-PBPbattery {
   padding: 0.25rem 0.75rem;
   margin: 1px 6px;
+
+  border: 2px dashed #44403c;
   background-color: #1a1a1a;
-  border-radius: 8px;
+  border-radius: 6px;
   box-shadow: 1px 1px 3px #111;
 }
 
@@ -83,6 +87,16 @@ window#waybar {
 }
 
 #battery.critical {
+  color: #666;
+}
+
+#custom-updates.updates-available {
+  color: #e0e0e0;
+  animation-name: blink-warning;
+  animation-duration: 3s;
+}
+
+#custom-updates.no-updates {
   color: #666;
 }
 

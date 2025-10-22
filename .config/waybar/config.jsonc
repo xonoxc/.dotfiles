@@ -10,17 +10,15 @@
 		"hyprland/workspaces",
 		"hyprland/window",
 		"power-profiles-daemon",
+		"custom/updates"
 	],
 	"modules-center": [
 		"clock",
 	],
 	"modules-right": [
 		"tray",
-		//"idle_inhibitor",
 		"memory",
 		"cpu",
-		// "custom/keyboard-layout",
-		//"backlight",
 		"pulseaudio",
 		"pulseaudio#microphone",
 		"network",
@@ -58,6 +56,12 @@
 		"interval": 10,
 		"format": " {:%H:%M} ",
 		"tooltip-format": "{:%e %B %Y}"
+	},
+	"custom/updates": {
+		"format": " {}",
+		"exec": "~/.config/waybar/scripts/updates.py",
+		"interval": 3600, 
+		"tooltip": true
 	},
 	"power-profiles-daemon": {
 		"format": "{icon} {profile}",
