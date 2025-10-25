@@ -15,7 +15,17 @@ set fish_greeting
 
 
 #echo "i use arch btw!!! >_<"
-# uptime
+
+# function to fuzzy find and change directory
+function fd
+    # Use the first argument if provided, else default to '.'
+    set dir (find (or $argv[1] .) -type d 2> /dev/null | fzf +m)
+    
+    # Only cd if a directory was selected
+    if test -n "$dir"
+        cd "$dir"
+    end
+end
 
 # function to check updates whenever needed
 function cu 
@@ -68,7 +78,7 @@ end
 
 
 function fish_user_key_bindings
-    bind \cr fzf_history_widget
+    bind -M \cr fzf_history_widget
 end
 
 
@@ -103,7 +113,6 @@ bind -M insert \t accept-autosuggestion
 #setting up some of my alias 
 alias v="nvim"
 alias ls="exa --icons"
-alias fd='cd ~ && cd $(find . -type d 2>/dev/null | fzf --preview "tree -aC {} | head -n 20" --prompt "Select directory: " --height 40% --border --reverse)'
 alias sd="cd ~ && cd \$(find . -type d | sed 's|^\./||' | fzf)"
 alias la="ls -A"
 alias ll="ls -alF"
@@ -160,12 +169,15 @@ end
 
 
 
-set -xU GEMINI_API_KEY "AIzaSyBm18GXHeUEizl77WI3oh05iM2wT9l_yGU"
+set -xU GEMINI_API_KEY "AIzaSyAxcBDr81dQgsDqKgO28xMhTXqfUSNEaPY"
 
 
 
 #binding the ctrl+e for to open superfile
+
+# keybindigs for all modes should be put here
 for mode in (bind -L)
     bind -M $mode \ce spf
+    bind -M $mode \cr fzf_history_widget
 end
 
