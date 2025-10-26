@@ -18,10 +18,17 @@ set fish_greeting
 
 # function to fuzzy find and change directory
 function fd
-    # Use the first argument if provided, else default to '.'
-    set dir (find (or $argv[1] .) -type d 2> /dev/null | fzf +m)
-    
-    # Only cd if a directory was selected
+    # If user passed an argument, use it; else use current directory (.)
+    if test (count $argv) -gt 0
+        set target $argv[1]
+    else
+        set target .
+    end
+
+    # Now safely run find
+    set dir (find $target -type d 2>/dev/null | fzf +m)
+
+    # Only cd if user picked something
     if test -n "$dir"
         cd "$dir"
     end
