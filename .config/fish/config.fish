@@ -16,21 +16,13 @@ set fish_greeting
 
 #echo "i use arch btw!!! >_<"
 
-# function to fuzzy find and change directory
-function fd
-    # If user passed an argument, use it; else use current directory (.)
-    if test (count $argv) -gt 0
-        set target $argv[1]
-    else
-        set target .
-    end
+function search_dirs
+    set target (test (count $argv) -gt 0; and echo $argv[1]; or echo .)
+    set dir (fd --type d --hidden --exclude .git . $target | fzf +m)
 
-    # Now safely run find
-    set dir (find $target -type d 2>/dev/null | fzf +m)
-
-    # Only cd if user picked something
     if test -n "$dir"
         cd "$dir"
+        commandline -f repaint
     end
 end
 
@@ -87,6 +79,12 @@ end
 function fish_user_key_bindings
     bind -M \cr fzf_history_widget
 end
+
+
+function fish_user_key_bindings
+    bind -M \cs 'search_dirs'
+end
+
 
 
 # Start SSH agent if not already running
@@ -186,5 +184,6 @@ set -xU GEMINI_API_KEY "AIzaSyAxcBDr81dQgsDqKgO28xMhTXqfUSNEaPY"
 for mode in (bind -L)
     bind -M $mode \ce spf
     bind -M $mode \cr fzf_history_widget
+    bind -M $mode \cs search_dirs
 end
 
