@@ -184,6 +184,6 @@ set -xU GEMINI_API_KEY "AIzaSyAxcBDr81dQgsDqKgO28xMhTXqfUSNEaPY"
 for mode in (bind -L)
     bind -M $mode \ce spf
     bind -M $mode \cr fzf_history_widget
-    bind -M $mode \cs search_dirs
+    bind -M $mode \ef search_dirs
 end
 
