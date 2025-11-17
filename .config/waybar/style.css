@@ -40,13 +40,17 @@ window#waybar {
 /* Modules */
 #battery,
 #clock,
-#backlight,
+#backlight-slider,
 #cpu,
 #custom-keyboard-layout,
 #memory,
+#backlight,
 #mode,
 #custom-weather,
 #network,
+#privacy,
+#privacy,
+#privacy-item,
 #pulseaudio,
 #temperature,
 #tray,
@@ -183,4 +187,29 @@ window#waybar {
   color: #bbb;
   font-family: "bargraph";
   font-size: 22px;
+}
+
+#backlight {
+  font-size: 14px;
+}
+
+#backlight-slider slider {
+  min-height: 0px;
+  min-width: 0px;
+  opacity: 0;
+  background-image: none;
+  border: none;
+  box-shadow: none;
+  background: none;
+}
+#backlight-slider trough {
+  min-height: 10px;
+  min-width: 80px;
+  border-radius: 5px;
+  background: black;
+}
+#backlight-slider highlight {
+  min-width: 10px;
+  border-radius: 5px;
+  background: white;
 }

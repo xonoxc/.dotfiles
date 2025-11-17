@@ -6,11 +6,12 @@
 	"height": 30,
 	"start_hidden": true,
 	"modules-left": [
-		"custom/media",
 		"hyprland/workspaces",
 		"hyprland/window",
 		"power-profiles-daemon",
-		"custom/updates"
+		"custom/updates",
+		"backlight/slider",
+		"temperature",
 	],
 	"modules-center": [
 		"clock",
@@ -108,7 +109,7 @@
 	},
 	"hyprland/window": {
 		"format": "{}",
-		"max-length": 15
+		"max-length": 40
 	},
 	"hyprland/workspaces": {
 		"disable-scroll": true,
@@ -183,5 +184,11 @@
 		},
 		"escape": true,
 		"exec": "/usr/bin/python3 $HOME/.config/waybar/scripts/mediaplayer.py 2> /dev/null"
-	}
+	},
+	"backlight/slider": {
+		"min": 0,
+		"max": 100,
+		"orientation": "horizontal",
+		"device": "intel_backlight"
+	},
 }
