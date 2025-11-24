@@ -154,7 +154,6 @@ window#waybar {
 }
 
 #workspaces button.active {
-  border-bottom: 1px solid #666;
   background-color: #1a1a1a;
 }
 
