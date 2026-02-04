@@ -34,9 +34,8 @@ function search_dirs
         if set -q TMUX
             # Create session if it doesn't exist
             if not tmux has-session -t "$session" 2>/dev/null
-                tmux new-session -d -s "$session" -c "$dir"
+				tmux switch-client -t "$session"
             end
-            tmux switch-client -t "$session"
         else
             # Not in tmux → create & attach
             tmux new-session -s "$session" -c "$dir"
