@@ -17,12 +17,30 @@ set fish_greeting
 #echo "i use arch btw!!! >_<"
 
 function search_dirs
+    # Pick target directory to search from (default: .)
     set target (test (count $argv) -gt 0; and echo $argv[1]; or echo .)
+
+    # Fuzzy-find a directory
     set dir (fd --type d --hidden --exclude .git . $target | fzf +m)
 
     if test -n "$dir"
-        cd "$dir"
-        commandline -f repaint
+        # Resolve absolute path (tmux likes being certain)
+        set dir (realpath "$dir")
+
+        # Use parent directory name as session name
+        set session (basename (dirname "$dir"))
+
+        # If we're already inside tmux
+        if set -q TMUX
+            # Create session if it doesn't exist
+            if not tmux has-session -t "$session" 2>/dev/null
+                tmux new-session -d -s "$session" -c "$dir"
+            end
+            tmux switch-client -t "$session"
+        else
+            # Not in tmux → create & attach
+            tmux new-session -s "$session" -c "$dir"
+        end
     end
 end
 
@@ -75,18 +93,6 @@ function dotfiles
 end
 
 
-
-function fish_user_key_bindings
-    bind -M \cr fzf_history_widget
-end
-
-
-function fish_user_key_bindings
-    bind -M \cs 'search_dirs'
-end
-
-
-
 # Start SSH agent if not already running
 # if not pgrep -u $USER ssh-agent > /dev/null
 #     eval (ssh-agent -c)
@@ -101,7 +107,7 @@ end
 
 
 # shell variables 
-set -x BROWSER "zen-browser"
+set -x BROWSER "helium-browser"
 set -x HYPRSHOT_DIR "/home/xonoxc/Pictures"
 set -x GOPATH $HOME/go
 set -x PATH $PATH $GOPATH/bin
@@ -111,6 +117,7 @@ set -x PATH $HOME/Android/Sdk/cmdline-tools/latest/bin $PATH
 
 set -x PATH $HOME/.cargo/bin $PATH
 
+set -gx ANDROID_HOME "/home/xono/Android/Sdk"
 
 # accepting autosuggestions using TAB 
 bind -M insert \t accept-autosuggestion
@@ -125,9 +132,14 @@ alias l='ls -CF'
 alias cl="clear"
 alias l="ls -CF"
 alias .files="cd ~/.dotfiles"
+alias fzf-tmux="~/.config/tmux/tmux-fzf.sh"
 
 
-
+# docker related alias
+alias dsh='docker exec -it $(  docker ps | fzf | awk '"'"'{print $1;}'"'"'  ) sh'
+alias dbash='docker exec -it $(  docker ps | fzf | awk '"'"'{print $1;}'"'"'  ) bash'
+alias drm='docker rm -f $(  docker ps | fzf | awk '"'"'{print $1;}'"'"'  )'
+alias drma='docker rm -f $(  docker ps -a | fzf | awk '"'"'{print $1;}'"'"'  )'
 
 # shell path variables 
 set -x PATH $PATH $HOME/.config/composer/vendor/bin
@@ -163,7 +175,6 @@ set --export BUN_INSTALL "$HOME/.bun"
 set --export PATH $BUN_INSTALL/bin $PATH
 
 
-set -x MANPAGER "sh -c 'col -bx | bat -l man -p'"
 
 # pnpm
 set -gx PNPM_HOME "/home/xonoxc/.local/share/pnpm"
@@ -174,16 +185,17 @@ end
 
 
 
-set -xU GEMINI_API_KEY "AIzaSyAxcBDr81dQgsDqKgO28xMhTXqfUSNEaPY"
+set -xU GEMINI_API_KEY "AIzaSyCHtyJI4gEUsbjhEaXocmp8UB5QmeTDnlQ"
+
+set -xU GOOGLE_GENERATIVE_AI_API_KEY  "AIzaSyCHtyJI4gEUsbjhEaXocmp8UB5QmeTDnlQ"
 
 
 
-#binding the ctrl+e for to open superfile
+
 
 # keybindigs for all modes should be put here
 for mode in (bind -L)
-    bind -M $mode \ce spf
-    bind -M $mode \cr fzf_history_widget
-    bind -M $mode \ef search_dirs
+	bind -M $mode \cr fzf_history_widget
+	bind -M $mode \ef search_dirs
 end
 
