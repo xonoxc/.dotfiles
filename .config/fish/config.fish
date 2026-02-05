@@ -24,25 +24,29 @@ function search_dirs
     set dir (fd --type d --hidden --exclude .git . $target | fzf +m)
 
     if test -n "$dir"
-        # Resolve absolute path (tmux likes being certain)
+        # Resolve absolute path
         set dir (realpath "$dir")
 
-        # Use parent directory name as session name
-        set session (basename (dirname "$dir"))
+        # Base session name from parent dir
+        set base_session (basename (dirname "$dir"))
+        set session $base_session
 
-        # If we're already inside tmux
+        # If session exists, disambiguate using path hash
+        if tmux has-session -t "$session" 2>/dev/null
+            set hash (echo -n "$dir" | sha1sum | cut -c1-6)
+            set session "$base_session-$hash"
+        end
+
         if set -q TMUX
-            # Create session if it doesn't exist
             if not tmux has-session -t "$session" 2>/dev/null
-				tmux switch-client -t "$session"
+                tmux new-session -d -s "$session" -c "$dir"
             end
+            tmux switch-client -t "$session"
         else
-            # Not in tmux → create & attach
             tmux new-session -s "$session" -c "$dir"
         end
     end
 end
-
 # function to check updates whenever needed
 function cu 
     echo "wait ..."
