@@ -17,36 +17,34 @@ set fish_greeting
 #echo "i use arch btw!!! >_<"
 
 function search_dirs
-    # Pick target directory to search from (default: .)
-    set target (test (count $argv) -gt 0; and echo $argv[1]; or echo .)
+    set target (count $argv >/dev/null; and echo $argv[1]; or echo .)
 
-    # Fuzzy-find a directory
-    set dir (fd --type d --hidden --exclude .git . $target | fzf +m)
+    set dir (fd --type d --hidden --exclude .git . $target | fzf)
+    test -z "$dir"; and return
 
-    if test -n "$dir"
-        # Resolve absolute path
-        set dir (realpath "$dir")
+    set dir (realpath "$dir")
 
-        # Base session name from parent dir
-        set base_session (basename (dirname "$dir"))
-        set session $base_session
+    # deterministic session name for this directory
+	set base (basename "$dir")
+    set hash (echo -n "$dir" | sha1sum | cut -c1-6)
+    set session "$base-$hash"
 
-        # If session exists, disambiguate using path hash
+    if set -q TMUX
+        # inside tmux
         if tmux has-session -t "$session" 2>/dev/null
-            set hash (echo -n "$dir" | sha1sum | cut -c1-6)
-            set session "$base_session-$hash"
-        end
-
-        if set -q TMUX
-            if not tmux has-session -t "$session" 2>/dev/null
-                tmux new-session -d -s "$session" -c "$dir"
-            end
+            # session exists → switch
             tmux switch-client -t "$session"
         else
-            tmux new-session -s "$session" -c "$dir"
+            # no session → just cd
+		    tmux send-keys -l "cd $dir"
+			tmux send-keys Enter
         end
+    else
+        # outside tmux → always create session
+        tmux new-session -s "$session" -c "$dir"
     end
 end
+
 # function to check updates whenever needed
 function cu 
     echo "wait ..."
