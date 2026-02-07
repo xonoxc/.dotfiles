@@ -17,14 +17,15 @@ set fish_greeting
 #echo "i use arch btw!!! >_<"
 
 function search_dirs_cd
-    set target (count $argv >/dev/null; and echo $argv[1]; or echo .)
+  set target (test (count $argv) -gt 0; and echo $argv[1]; or echo .)
 
-    set dir (fd --type d --hidden --exclude .git . $target | fzf)
-    test -z "$dir"; and return
 
-    set dir (realpath "$dir")
-    cd "$dir"
-	clear
+    set dir (fd --type d --hidden --exclude .git . $target | fzf +m)
+
+    if test -n "$dir"
+        cd "$dir"
+        commandline -f repaint
+	end
 end
 
 function search_dirs_tmux
