@@ -24,6 +24,7 @@ function search_dirs_cd
 
     set dir (realpath "$dir")
     cd "$dir"
+	clear
 end
 
 function search_dirs_tmux
