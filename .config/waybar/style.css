@@ -66,9 +66,9 @@ window#waybar {
   padding: 0.25rem 0.75rem;
   margin: 1px 6px;
 
-  border: 2px dashed #34313c;
+  border: 2px dashed #44403c;
   background-color: #1a1a1a;
-  border-radius: 8px;
+  border-radius: 0px;
   box-shadow: 1px 1px 3px #111;
 }
 
@@ -134,18 +134,9 @@ window#waybar {
   padding: 7px;
 }
 
-#pulseaudio {
-  border-radius: 8px 0 0 8px;
-}
-
-#pulseaudio.microphone {
-  border-radius: 0 8px 8px 0;
-}
-
 #workspaces {
   font-size: 12px;
   background-color: #1a1a1a;
-  border-radius: 8px;
 }
 
 #workspaces button {
