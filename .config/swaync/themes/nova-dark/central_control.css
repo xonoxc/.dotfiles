@@ -20,12 +20,41 @@
 
 .control-center {
   background: rgba(20, 20, 20, 1);
-  border-radius: 14px;
+  transition: 300ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  border-radius: 5px;
   border: 2px dashed #44403c;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
-  margin-top: 8px;
-  margin: 18px;
+  margin: 0;
   padding: 12px;
+  overflow-y: hidden;
+}
+
+.control-center > box {
+  display: flex;
+  flex-direction: column; /* Force vertical ordering */
+  flex: 1;
+  flex-wrap: nowrap; /* Prevent elements from wrapping and breaking bounds */
+  gap: 8px;
+  height: 100%; /* Constrain everything to the config's exact height */
+}
+
+.control-center > box > .widget-label,
+.control-center > box > .widget-title {
+  flex: 0 0 auto;
+}
+
+.control-center > box > .widget-mpris {
+  flex: 0 0 auto; /* Freeze size so the media player doesn't stretch */
+  align-self: stretch;
+}
+
+.control-center > box > .control-center-list {
+  flex: 1 1 100%; /* Grow aggressively to absorb remaining window space */
+  min-height: 0; /* Essential for GTK environments to trigger scrolling */
+  overflow-y: auto; /* Isolates scrolling exclusively to this block */
+}
+
+.control-center > box > .control-center-list > .notification-row:last-child {
+  margin-bottom: 0;
 }
 
 /* ========================================================================== */
@@ -34,8 +63,7 @@
 
 .control-center .notification-row .notification-background {
   background-color: #1a1a1a;
-  border-radius: 16px;
-  margin: 4px 0;
+  border-radius: 5px;
   padding: 4px;
 }
 
@@ -74,7 +102,7 @@
   .notification-action {
   background: rgba(85, 85, 85, 0.6);
   color: #cccccc;
-  border-radius: 12px;
+  border-radius: 5px;
   margin: 6px;
 }
 
@@ -174,6 +202,10 @@ progressbar {
 .widget-title {
   font-size: 1.2em;
   margin: 6px;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  background: rgba(20, 20, 20, 1);
 }
 
 .widget-title button {
@@ -251,21 +283,23 @@ progressbar {
 
 .widget-mpris {
   background: #1a1a1a;
-  border-radius: 22px;
+  border-radius: 5px;
   color: #cccccc;
-  margin: 20px 6px;
+  margin: 0;
+  padding: 6px;
 }
 
 .widget-mpris-player {
   background-color: #141414;
-  border-radius: 22px;
-  padding: 6px 14px;
-  margin: 6px;
+  border-radius: 8px;
+  padding: 6px 10px;
+  margin: 4px;
 }
 
 .widget-mpris > box > button {
   color: #cccccc;
-  border-radius: 20px;
+  border-radius: 8px;
+  padding: 4px 6px;
 }
 
 .widget-mpris button {
@@ -277,7 +311,7 @@ progressbar {
 }
 
 .widget-mpris-album-art {
-  border-radius: 16px;
+  display: none;
 }
 
 .widget-mpris-title {
