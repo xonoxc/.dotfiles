@@ -168,10 +168,12 @@ remove_stale_default_session() {
 
 declare session_name
 if [[ "$1" == "--archived" ]]; then
-	session_name=$(select_session "$(get_archived_sessions)")
+	# fzf returns 1 on ESC/C-c — handle it gracefully
+	if ! session_name=$(select_session "$(get_archived_sessions)"); then
+		exit 0
+	fi
 elif [[ "$1" == "--group" ]]; then
-	selected=$(select_session "$(get_groups)")
-	if [[ -z "$selected" ]]; then
+	if ! selected=$(select_session "$(get_groups)"); then
 		exit 0
 	fi
 	group_name="${selected#󱃲 }"
@@ -181,8 +183,7 @@ elif [[ "$1" == "--group" ]]; then
 	remove_stale_default_session
 	exit $rc
 else
-	selected=$(select_session "$(get_all_sessions)$(echo; get_groups)")
-	if [[ -z "$selected" ]]; then
+	if ! selected=$(select_session "$(get_all_sessions)$(echo; get_groups)"); then
 		exit 0
 	fi
 	if [[ "$selected" == 󱃲* ]]; then

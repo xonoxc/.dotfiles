@@ -18,10 +18,8 @@ get_active_sessions() {
 }
 
 # Ask the user to pick a session
-selected=$(select_session "$(get_active_sessions)")
-
-# Exit cleanly if the user cancelled
-if [[ -z "$selected" ]]; then
+# fzf returns 1 on ESC/C-c — handle it gracefully instead of letting set -e kill us
+if ! selected=$(select_session "$(get_active_sessions)"); then
 	exit 0
 fi
 

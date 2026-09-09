@@ -8,8 +8,7 @@ get_saved_sessions() {
 	done
 }
 
-session_name=$(select_session "$(get_saved_sessions)")
-if [[ -z "$session_name" ]]; then
+if ! session_name=$(select_session "$(get_saved_sessions)"); then
 	exit 0
 fi
 start_spinner "Archiving session"

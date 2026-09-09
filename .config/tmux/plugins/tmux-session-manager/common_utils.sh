@@ -73,7 +73,7 @@ select_session() {
 	local -r fzf_colors="bg:#1a2026,fg:#dcdcdc,bg+:#242a30,fg+:#ffffff,hl:#8aac8b,hl+:#8aac8b,info:#565c62,pointer:#7797b7,marker:#8aac8b,prompt:#7797b7,spinner:#7797b7,header:#565c62,border:#2d3339"
 	local -r sessions=$(echo "$1" | sort | uniq)
 	if command -v fzf 1>/dev/null; then
-		echo "$sessions" | fzf --color="$fzf_colors"
+		echo "$sessions" | fzf --ansi --color="$fzf_colors"
 	else
 		PS3="Select session or 0 to cancel: "
 		select session in $sessions; do
