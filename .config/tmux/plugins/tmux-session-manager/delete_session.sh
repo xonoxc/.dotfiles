@@ -107,7 +107,7 @@ fi
 selected_clean=$(strip_decorations "$selected")
 
 # Determine what was selected and act accordingly
-if [[ "$selected_clean" == $GROUP_ICON* ]]; then
+if [[ "$selected" == *"$GROUP_ICON"* ]]; then
 	# Group
 	group_name="${selected_clean#$GROUP_ICON }"
 	group_name="${group_name%% (*}"
@@ -125,9 +125,9 @@ elif [[ "$selected" == *"$RUN_ICON"* ]]; then
 		tmux display-message "Session '$session_name' was not running. Saved files deleted."
 	fi
 
-elif [[ "$selected_clean" == $SAVED_ICON* ]]; then
+elif [[ "$selected" == *"$SAVED_ICON"* ]]; then
 	# Saved session — just delete the files
-	session_name="${selected_clean#$SAVED_ICON }"
+	session_name="${selected_clean}"
 	delete_saved_files "$session_name"
 	tmux display-message "Saved session '$session_name' deleted"
 
