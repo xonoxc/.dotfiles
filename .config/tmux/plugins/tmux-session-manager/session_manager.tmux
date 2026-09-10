@@ -75,20 +75,39 @@ for key in $bindings; do
 done
 
 
-# Delete
-bindings=$(get_tmux_option "@session-manager-delete-key" "X")
+# Kill (running session only — no persistence file deletion)
+# Switches away from the current session first so the user isn't dropped.
+bindings=$(get_tmux_option "@session-manager-kill-key" "X")
 for key in $bindings; do
 	tmux bind-key "$key" run-shell \
 		"tmux display-popup -E -w $POPUP_WIDTH -h $POPUP_HEIGHT -b rounded \
-		-T '#[bg=#242a30,fg=#e89199,bold] 󰗆 DELETE SESSION 󰗆 ' \
-		'$(pwd)/delete_session.sh'"
+		-T '#[bg=#242a30,fg=#e89199,bold] 󰗆 KILL SESSION 󰗆 ' \
+		'$(pwd)/kill_session.sh'"
 done
 
-bindings=$(get_tmux_option "@session-manager-delete-key-root" "")
+bindings=$(get_tmux_option "@session-manager-kill-key-root" "")
 for key in $bindings; do
 	tmux bind-key -n "$key" run-shell \
 		"tmux display-popup -E -w $POPUP_WIDTH -h $POPUP_HEIGHT -b rounded \
-		-T '#[bg=#242a30,fg=#e89199,bold] 󰗆 DELETE SESSION 󰗆 ' \
-		'$(pwd)/delete_session.sh'"
+		-T '#[bg=#242a30,fg=#e89199,bold] 󰗆 KILL SESSION 󰗆 ' \
+		'$(pwd)/kill_session.sh'"
+done
+
+# Delete persistence files only (no tmux kill — session keeps running)
+# Shows running + saved + groups.  Switches away from current session first.
+bindings=$(get_tmux_option "@session-manager-delete-persistence-key" "D")
+for key in $bindings; do
+	tmux bind-key "$key" run-shell \
+		"tmux display-popup -E -w $POPUP_WIDTH -h $POPUP_HEIGHT -b rounded \
+		-T '#[bg=#242a30,fg=#7797b7,bold] 󰗆 DELETE PERSISTENCE FILES 󰗆 ' \
+		'$(pwd)/delete_persistence.sh'"
+done
+
+bindings=$(get_tmux_option "@session-manager-delete-persistence-key-root" "")
+for key in $bindings; do
+	tmux bind-key -n "$key" run-shell \
+		"tmux display-popup -E -w $POPUP_WIDTH -h $POPUP_HEIGHT -b rounded \
+		-T '#[bg=#242a30,fg=#7797b7,bold] 󰗆 DELETE PERSISTENCE FILES 󰗆 ' \
+		'$(pwd)/delete_persistence.sh'"
 done
 

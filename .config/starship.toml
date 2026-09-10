@@ -151,3 +151,6 @@ symbol = " "
 [scala]
 symbol = " "
 
+
+[ocaml]
+symbol = " "
