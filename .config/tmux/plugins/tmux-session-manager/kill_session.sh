@@ -2,8 +2,8 @@
 # kill_session.sh — kill a running tmux session only (no persistence file deletion)
 # Usage: bash kill_session.sh
 #
-# Safety: if the selected session is the current one, switch to another running
-# session first so the user isn't abruptly dropped.
+# If there are other sessions running, switch to one of them first so the user
+# isn't dropped.  If it's the last session, just kill it directly — no guard.
 
 set -euo pipefail
 
@@ -41,7 +41,6 @@ fi
 selected_clean="$(echo "$selected" | sed 's/\x1b\[[0-9;]*m//g')"
 selected_clean="${selected_clean#$RUN_ICON }"
 selected_clean="${selected_clean%% (current)}"
-selected_clean="$(echo "$selected_clean" | xargs)"
 
 if [[ -z "$selected_clean" ]]; then
 	tmux display-message -d0 "#[bg=red]Invalid selection."
@@ -50,25 +49,22 @@ fi
 
 current="$(tmux display-message -p "#{session_name}")"
 
-# Safety: if the target is the current session, switch away first
+# If there are other sessions running, switch away from current first
 if [[ "$selected_clean" == "$current" ]]; then
-	# Find another running session to switch to
 	other="$(tmux list-sessions -F "#{session_name}" 2>/dev/null \
 		| grep -v "^${selected_clean}$" \
-		| head -n1)"
+		| head -n1 || true)"
 	if [[ -n "$other" ]] && tmux has-session -t "$other" 2>/dev/null; then
 		tmux switch-client -t "$other"
-		# Brief moment for the switch to settle
 		sleep 0.2
 	fi
-	# Delete any stale default session "0" that tmux may create on switch
-	# (best-effort — harmless if already gone)
+	# Clean up stale default session "0" tmux may create on switch
 	tmux has-session -t 0 2>/dev/null && \
 		[[ "$(tmux display-message -p -t 0 '#{session_attached}')" == "0" ]] && \
 		tmux kill-session -t 0 2>/dev/null || true
 fi
 
-# Now kill the target session
+# Kill the target session — no guard, no pre-flight beyond the switch above
 if tmux has-session -t "$selected_clean" 2>/dev/null; then
 	tmux kill-session -t "$selected_clean"
 	tmux display-message "Session '$selected_clean' killed"

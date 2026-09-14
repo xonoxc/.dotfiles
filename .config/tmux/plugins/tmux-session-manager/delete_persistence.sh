@@ -4,8 +4,7 @@
 # Usage: bash delete_persistence.sh
 #
 # Shows saved sessions + groups on disk (running sessions are handled by the
-# kill popup instead).  Switches away from current session first so the flow
-# is never interrupted.
+# kill popup instead).  Straight-up delete — no switch-away, no guards.
 
 set -euo pipefail
 
@@ -95,8 +94,6 @@ if [[ -z "$selected_clean" ]]; then
 	exit 1
 fi
 
-current="$(tmux display-message -p "#{session_name}")"
-
 # ── Group ───────────────────────────────────────────────────────────────────
 if [[ "$selected" == *"$GROUP_ICON"* ]]; then
 	delete_group "$SAVE_DIR/groups/$selected_clean"
@@ -106,20 +103,6 @@ fi
 # ── Saved session ───────────────────────────────────────────────────────────
 session_name="$selected_clean"
 
-# If the current session is selected, switch away first (never kick the user)
-if [[ "$session_name" == "$current" ]]; then
-	other="$(tmux list-sessions -F "#{session_name}" 2>/dev/null \
-		| grep -v "^${session_name}$" \
-		| head -n1)"
-	if [[ -n "$other" ]] && tmux has-session -t "$other" 2>/dev/null; then
-		tmux switch-client -t "$other"
-		sleep 0.2
-		# Clean up any stale default session "0" tmux may create
-		tmux has-session -t 0 2>/dev/null && \
-			[[ "$(tmux display-message -p -t 0 '#{session_attached}')" == "0" ]] && \
-			tmux kill-session -t 0 2>/dev/null || true
-	fi
-fi
-
+# Straight-up delete — no switch-away, no guard
 delete_saved_files "$session_name"
 tmux display-message "Persistence files for '$session_name' deleted"

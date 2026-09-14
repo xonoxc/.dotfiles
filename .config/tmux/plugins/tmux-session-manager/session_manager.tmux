@@ -74,9 +74,8 @@ for key in $bindings; do
 		'$(pwd)/switch_session.sh'"
 done
 
-
 # Kill (running session only — no persistence file deletion)
-# Switches away from the current session first so the user isn't dropped.
+# Switches to another session first if one exists; if last, kills directly.
 bindings=$(get_tmux_option "@session-manager-kill-key" "X")
 for key in $bindings; do
 	tmux bind-key "$key" run-shell \
@@ -94,7 +93,7 @@ for key in $bindings; do
 done
 
 # Delete persistence files only (no tmux kill — session keeps running)
-# Shows running + saved + groups.  Switches away from current session first.
+# Shows saved + groups on disk.  Deletes even for the last session — no guard.
 bindings=$(get_tmux_option "@session-manager-delete-persistence-key" "D")
 for key in $bindings; do
 	tmux bind-key "$key" run-shell \
@@ -110,4 +109,3 @@ for key in $bindings; do
 		-T '#[bg=#242a30,fg=#7797b7,bold] 󰗆 DELETE PERSISTENCE FILES 󰗆 ' \
 		'$(pwd)/delete_persistence.sh'"
 done
-
