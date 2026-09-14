@@ -60,13 +60,22 @@ delete_saved_files() {
 	find "$SAVE_DIR" -maxdepth 1 -type f -name "${escaped}_????-??-??T??:??:??" -delete 2>/dev/null || true
 }
 
+# Strip ANSI codes AND icons from a string (for matching)
+strip_decorations() {
+	local input="$1"
+	input=$(echo "$input" | sed 's/\x1b\[[0-9;]*m//g')
+	input="${input#$SAVED_ICON }"
+	input="${input#$GROUP_ICON }"
+	echo "$input"
+}
+
 delete_group() {
 	local group_dir="$1"
 	local group_name
 	group_name=$(basename "$group_dir")
 	if [[ ! -d "$group_dir" ]]; then
 		tmux display-message -d0 "#[bg=red]Group '$group_name' not found."
-		return 1
+		return 0
 	fi
 	rm -rf "$group_dir"
 	tmux display-message "Group '$group_name' deleted"
@@ -84,10 +93,7 @@ if ! selected=$(select_session "$all_sessions"); then
 fi
 
 # Strip ANSI codes and icons for reliable matching
-selected_clean="$(echo "$selected" | sed 's/\x1b\[[0-9;]*m//g')"
-selected_clean="${selected_clean#$SAVED_ICON }"
-selected_clean="${selected_clean#$GROUP_ICON }"
-selected_clean="$(echo "$selected_clean" | xargs)"
+selected_clean="$(strip_decorations "$selected")"
 
 if [[ -z "$selected_clean" ]]; then
 	tmux display-message -d0 "#[bg=red]Invalid selection."
@@ -96,7 +102,9 @@ fi
 
 # ── Group ───────────────────────────────────────────────────────────────────
 if [[ "$selected" == *"$GROUP_ICON"* ]]; then
-	delete_group "$SAVE_DIR/groups/$selected_clean"
+	group_name="${selected_clean#$GROUP_ICON }"
+	group_name="${group_name%% (*}"
+	delete_group "$SAVE_DIR/groups/$group_name"
 	exit 0
 fi
 
