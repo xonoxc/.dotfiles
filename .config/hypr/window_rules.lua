@@ -3,30 +3,6 @@
 local M = {}
 
 M.setup = function()
-	-- terminal → ws1
-	hl.window_rule({
-		match = { class = "^kitty$" },
-		workspace = "1",
-	})
-
-	-- browsers → ws2
-	hl.window_rule({
-		match = { class = "^helium$|^brave$" },
-		workspace = "2",
-	})
-
-	-- notes → ws3
-	hl.window_rule({
-		match = { class = "^obsidian$" },
-		workspace = "3",
-	})
-
-	-- file manager → ws4
-	hl.window_rule({
-		match = { class = "^thunar$" },
-		workspace = "4",
-	})
-
 	-- floating dialogs (picture-in-picture, uploads, prints)
 	hl.window_rule({
 		match = { title = "Picture-in-Picture|File Upload|Print" },
@@ -117,6 +93,29 @@ M.setup = function()
 	hl.window_rule({
 		match = { class = "^mpv$" },
 		float = true,
+	})
+
+	-- Google Meet screen-sharing indicator
+	hl.window_rule({
+		match = {
+			title = "^meet%.google%.com is sharing a window%.$",
+		},
+		float = true,
+		no_focus = true,
+		move = { 10, 890 },
+		border_size = 0,
+	})
+
+	-- Google Meet PiP
+	hl.window_rule({
+		match = {
+			class = "^helium$",
+			title = "^Meet – ",
+		},
+		float = true,
+		no_focus = true,
+		move = { 1250, 820 },
+		border_size = 0,
 	})
 end
 
