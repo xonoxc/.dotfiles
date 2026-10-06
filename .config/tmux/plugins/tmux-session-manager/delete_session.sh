@@ -16,7 +16,7 @@ RESET=$'\e[0m'
 # Icons
 SAVED_ICON=""       # saved sessions (on disk)
 GROUP_ICON="󱃲"      # groups
-RUN_ICON="󰛦"        # running sessions (big hexagon)
+RUN_ICON="󰆧"        # running sessions (big hexagon)
 
 # Get all running tmux sessions (except current)
 get_running_sessions() {

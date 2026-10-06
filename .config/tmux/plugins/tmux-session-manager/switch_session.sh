@@ -13,7 +13,7 @@ get_active_sessions() {
 	current="$(tmux display-message -p "#{session_name}")"
 	tmux list-sessions -F "#{session_name}" 2>/dev/null \
 		| while IFS= read -r session; do
-			[[ "$session" != "$current" ]] && echo "󰛦 $session"
+			[[ "$session" != "$current" ]] && echo "󰆧 $session"
 		done
 }
 
@@ -24,7 +24,7 @@ if ! selected=$(select_session "$(get_active_sessions)"); then
 fi
 
 # Strip the leading icon
-target_session="${selected#󰛦 }"
+target_session="${selected#󰆧 }"
 
 # Switch to the selected session
 if tmux has-session -t "$target_session" 2>/dev/null; then

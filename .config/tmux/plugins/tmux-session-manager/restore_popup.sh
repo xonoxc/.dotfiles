@@ -9,10 +9,8 @@ source "$SCRIPT_DIR/common_utils.sh"
 
 ACTION="${1:-restore}"
 
-# Border style — must match a valid popup-border-lines value.
-# 'rounded' is the tmux global option name; -b accepts the same tokens.
-# Fall back to the server default if our preferred style is rejected.
-BORDER="rounded"
+# Border style — 'none' removes the border completely for a clean look.
+# User-defined colors: background #2b3136 via -s bg=.
 
 # Popup dimensions (must match session_manager.tmux defaults)
 _POPUP_WIDTH="42%"
@@ -43,12 +41,14 @@ case "$ACTION" in
 esac
 
 # Launch the popup.  -E auto-closes when the script exits.
-# -b round uses the round border style (compatible with tmux 3.2+).
+# -b none removes the border, -s sets background to #2b3136.
 # -T accepts tmux style directives via #[...] for the popup title.
 tmux display-popup \
     -E \
     -w "$_POPUP_WIDTH" \
     -h "$_POPUP_HEIGHT" \
-    -b "$BORDER" \
+    -b rounded \
+    -S 'fg=#2b3136' \
+    -s bg=#2b3136 \
     -T "$TITLE" \
     "$SCRIPT"

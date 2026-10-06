@@ -11,12 +11,12 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 source "$SCRIPT_DIR/common_utils.sh"
 
 # ANSI color codes
-BLUE_FG=$'\e[38;2;119;151;183m'    # #7797b7
+BLUE_FG=$'\e[38;2;190;190;190m'    # #bebebe — match fzf default foreground
 GRAY_FG=$'\e[38;2;192;192;192m'     # #c0c0c0 — visible gray for current-session marker
 GREEN_FG=$'\e[38;2;138;172;139m'    # #8aac8b
 RESET=$'\e[0m'
 
-RUN_ICON="󰛦"
+RUN_ICON="󰆧"
 
 # Build the list of all running sessions, current session first and marked
 get_running_sessions() {
