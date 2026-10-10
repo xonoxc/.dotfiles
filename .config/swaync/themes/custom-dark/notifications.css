@@ -1,0 +1,200 @@
+/* Majority-matched swaync floating notifications — monochrome brutalist
+ * Matches Dunst: bg #1a1a1a, frame 2px, corner-radius 6px, font SF Pro (system)
+ * Matches Waybar: border #39393f, shadow 1px 1px 3px #111, fg #cccccc / #e0e0e0
+ * Accents: muted pastel #a39ec4 selected, #c49ea0 urgent (Rofi/Alacritty)
+ */
+
+@define-color background         #1a1a1a;
+@define-color background-alt     #262626;
+@define-color background-sec     #262626;
+@define-color foreground         #cccccc;
+@define-color text               #e0e0e0;
+@define-color border             #39393f;
+@define-color selected           #a39ec4;
+@define-color active             #9ec49f;
+@define-color urgent             #c49ea0;
+@define-color hover              alpha(@selected, 0.25);
+
+* {
+  all: unset;
+  font-size: 12px;
+  font-family: "SF Pro Display", "SF Pro Text", "SF Pro", sans-serif;
+  font-weight: bold;
+  transition: 100ms;
+  color: @text;
+}
+
+.blank-window {
+  background: transparent;
+}
+
+.notification-row {
+  outline: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* Floating notification card — identical to control-center rows */
+.floating-notifications.background .notification-row .notification-background {
+  background: @background-alt;
+  box-shadow: 1px 1px 3px #111;
+  border: 2px solid @border;
+  border-radius: 6px;
+  margin: 4px;
+  padding: 2px;
+}
+
+.floating-notifications.background
+  .notification-row
+  .notification-background
+  .notification {
+  padding: 0;
+  border-radius: 6px;
+  background: @background-alt;
+}
+
+.floating-notifications.background
+  .notification-row
+  .notification-background
+  .notification.critical {
+  border: 2px solid @urgent;
+}
+
+.floating-notifications.background
+  .notification-row
+  .notification-background
+  .notification
+  .notification-content {
+  margin: 4px;
+  padding: 6px 6px 2px 2px;
+}
+
+.floating-notifications.background
+  .notification-row
+  .notification-background
+  .notification
+  > *:last-child
+  > * {
+  min-height: 3.4em;
+}
+
+.floating-notifications.background
+  .notification-row
+  .notification-background
+  .notification
+  > *:last-child
+  > *
+  .notification-action {
+  border-radius: 6px;
+  background: @background-alt;
+  border: 2px solid @border;
+  color: @text;
+  margin: 6px;
+}
+
+.floating-notifications.background
+  .notification-row
+  .notification-background
+  .notification
+  > *:last-child
+  > *
+  .notification-action:hover {
+  background: @selected;
+  color: @background;
+  border-color: @selected;
+}
+
+.floating-notifications.background
+  .notification-row
+  .notification-background
+  .notification
+  > *:last-child
+  > *
+  .notification-action:active {
+  background: @selected;
+  color: @background;
+}
+
+/* Icon — square like Dunst icon_corner_radius 0 */
+.image {
+  margin: 10px 20px 10px 0;
+  border-radius: 6px;
+}
+
+.summary {
+  font-weight: 800;
+  font-size: 1rem;
+  color: @text;
+  margin-bottom: 6px;
+}
+
+.body {
+  font-size: 0.9rem;
+  font-weight: bold;
+  color: @foreground;
+  margin-top: 2px;
+}
+
+/* Close button */
+.floating-notifications.background
+  .notification-row
+  .notification-background
+  .close-button {
+  margin: 0;
+  padding: 4px;
+  border-radius: 6px;
+  background: transparent;
+  color: @text;
+  border: 2px dashed transparent;
+}
+
+.floating-notifications.background
+  .notification-row
+  .notification-background
+  .close-button:hover {
+  background: @selected;
+  color: @background;
+}
+
+.floating-notifications.background
+  .notification-row
+  .notification-background
+  .close-button:active {
+  background: @selected;
+  color: @background;
+}
+
+/* Progress — white on black like Waybar slider, urgent muted red for critical */
+.notification.critical progress {
+  background: @urgent;
+}
+
+.notification.low progress,
+.notification.normal progress {
+  background: @foreground;
+}
+
+progressbar,
+progress,
+trough {
+  border-radius: 6px;
+}
+
+trough {
+  background: #000000;
+  min-height: 10px;
+}
+
+/* Control-center rows also styled here (both files are loaded) */
+.control-center .notification-row .notification-background {
+  background: @background-alt;
+  border: 2px solid @border;
+  border-radius: 6px;
+  margin: 4px 0;
+  padding: 4px;
+}
+
+.control-center .notification-row .notification-background .notification.critical {
+  border: 2px solid @urgent;
+  color: @urgent;
+}

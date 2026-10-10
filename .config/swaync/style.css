@@ -1,3 +1,2 @@
-@import '../../.cache/wal/colors-waybar.css';
-@import 'themes/nova-dark/notifications.css';
-@import 'themes/nova-dark/central_control.css';
+@import 'themes/custom-dark/notifications.css';
+@import 'themes/custom-dark/central_control.css';
