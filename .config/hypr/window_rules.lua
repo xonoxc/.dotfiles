@@ -117,6 +117,14 @@ M.setup = function()
 		move = { 1250, 820 },
 		border_size = 0,
 	})
+
+	-- swaync control center: slide in from the right edge
+	-- (it's a layer, not a window, so hl.window_rule doesn't apply)
+	hl.layer_rule({
+		name = "swaync-cc-slide-right",
+		match = { namespace = "swaync-control-center" },
+		animation = "slide right",
+	})
 end
 
 return M

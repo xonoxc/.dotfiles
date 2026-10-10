@@ -22,7 +22,7 @@ M.setup = function()
 	-- control
 	hl.bind(mainMod .. " + Q", hl.dsp.window.close())
 	hl.bind(mainMod .. " + F", hl.dsp.window.fullscreen({ action = "toggle" }))
-	hl.bind(mainMod .. " + SHIFT + F", hl.dsp.window.float())
+	hl.bind(mainMod .. " + SHIFT + F", hl.dsp.window.float)
 
 	-- notification center
 	hl.bind(mainMod .. " + N", hl.dsp.exec_cmd("swaync-client -t"))

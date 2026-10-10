@@ -25,6 +25,9 @@ M.run = function()
 		hl.exec_cmd("blueman-applet")
 		hl.exec_cmd("hypridle")
 		hl.exec_cmd("hyprsunset")
+
+		-- app launcher vicinae server
+		hl.exec_cmd("vicinae server")
 	end)
 end
 
