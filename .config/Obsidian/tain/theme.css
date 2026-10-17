@@ -1,0 +1,728 @@
+/* ==========================================================================
+   tain — an Obsidian theme derived from the kitty terminal palette
+   --------------------------------------------------------------------------
+   Palette source: ~/.config/kitty/kitty.conf
+   Muted, desaturated tones on a deep blue-grey background.
+   ========================================================================== */
+
+/* ==========================================================================
+   1. Palette
+   ========================================================================== */
+
+:root {
+	/* base */
+	--tain-bg_x:        32, 39, 48;      /* #202730 */
+	--tain-bg:          rgb(var(--tain-bg_x));
+	--tain-bg-alt_x:    37, 45, 55;      /* #252d37 */
+	--tain-bg-alt:      rgb(var(--tain-bg-alt_x));
+	--tain-bg-hover_x:  43, 52, 64;      /* #2b3440 */
+	--tain-bg-hover:    rgb(var(--tain-bg-hover_x));
+	--tain-bg-active_x: 50, 60, 73;      /* #323c49 */
+	--tain-bg-active:   rgb(var(--tain-bg-active_x));
+	--tain-secondary_x: 27, 34, 42;      /* #1b222a */
+	--tain-secondary:   rgb(var(--tain-secondary_x));
+	--tain-secondary-alt_x: 23, 29, 36;  /* #171d24 */
+	--tain-secondary-alt: rgb(var(--tain-secondary-alt_x));
+	--tain-border_x:    56, 66, 79;      /* #38424f */
+	--tain-border:      rgb(var(--tain-border_x));
+
+	/* foreground ramp */
+	--tain-fg_x:        240, 240, 240;   /* #f0f0f0 */
+	--tain-fg:          rgb(var(--tain-fg_x));
+	--tain-fg-dim_x:    231, 231, 231;   /* #e7e7e7 */
+	--tain-fg-dim:      rgb(var(--tain-fg_dim_x));
+	--tain-muted_x:     184, 188, 192;   /* #b8bcc0 */
+	--tain-muted:       rgb(var(--tain-muted_x));
+	--tain-faint_x:     125, 132, 140;   /* #7d848c */
+	--tain-faint:       rgb(var(--tain-faint_x));
+	--tain-faintest_x:  90, 96, 104;     /* #5a6068 */
+	--tain-faintest:    rgb(var(--tain-faintest_x));
+
+	/* terminal colors 0-15 */
+	--tain-black_x:          38, 38, 38;   /* #262626 */
+	--tain-black:            rgb(var(--tain-black_x));
+	--tain-bright-black_x:   76, 76, 76;   /* #4c4c4c */
+	--tain-bright-black:     rgb(var(--tain-bright-black_x));
+	--tain-red_x:            172, 138, 140; /* #ac8a8c */
+	--tain-red:              rgb(var(--tain-red_x));
+	--tain-bright-red_x:     196, 158, 160; /* #c49ea0 */
+	--tain-bright-red:       rgb(var(--tain-bright-red_x));
+	--tain-green_x:          138, 172, 139; /* #8aac8b */
+	--tain-green:            rgb(var(--tain-green_x));
+	--tain-bright-green_x:   158, 196, 159; /* #9ec49f */
+	--tain-bright-green:     rgb(var(--tain-bright-green_x));
+	--tain-yellow_x:         172, 169, 138; /* #aca98a */
+	--tain-yellow:           rgb(var(--tain-yellow_x));
+	--tain-bright-yellow_x:  196, 193, 158; /* #c4c19e */
+	--tain-bright-yellow:    rgb(var(--tain-bright-yellow_x));
+	--tain-blue_x:           143, 138, 172; /* #8f8aac */
+	--tain-blue:             rgb(var(--tain-blue_x));
+	--tain-bright-blue_x:    163, 158, 196; /* #a39ec4 */
+	--tain-bright-blue:      rgb(var(--tain-bright-blue_x));
+	--tain-magenta_x:        172, 138, 172; /* #ac8aac */
+	--tain-magenta:          rgb(var(--tain-magenta_x));
+	--tain-bright-magenta_x: 196, 158, 196; /* #c49ec4 */
+	--tain-bright-magenta:   rgb(var(--tain-bright-magenta_x));
+	--tain-cyan_x:           138, 172, 171; /* #8aacab */
+	--tain-cyan:             rgb(var(--tain-cyan_x));
+	--tain-bright-cyan_x:    158, 195, 196; /* #9ec3c4 */
+	--tain-bright-cyan:      rgb(var(--tain-bright-cyan_x));
+	--tain-white_x:          240, 240, 240; /* #f0f0f0 */
+	--tain-white:            rgb(var(--tain-white_x));
+
+	/* accent (kitty url_color) */
+	--tain-tan_x:            198, 166, 121; /* #c6a679 */
+	--tain-tan:              rgb(var(--tain-tan_x));
+	--tain-tan-dim_x:        150, 124, 88;  /* #967c58 */
+	--tain-tan-dim:          rgb(var(--tain-tan-dim_x));
+}
+
+/* ==========================================================================
+   2. Base body
+   ========================================================================== */
+
+body {
+	--accent-h: 35;   /* --tain-tan #c6a679 */
+	--accent-s: 40%;
+	--accent-l: 63%;
+
+	--link-decoration:                none;
+	--link-decoration-hover:          underline;
+	--link-external-decoration:       none;
+	--link-external-decoration-hover: underline;
+
+	--tag-decoration:                 none;
+	--tag-decoration-hover:           none;
+	--tag-padding-x:                  .5em;
+	--tag-padding-y:                  .15em;
+	--tag-radius:                     .4em;
+
+	--tab-font-weight:                600;
+	--bold-weight:                    700;
+	--italic-weight:                  400;
+
+	--checkbox-radius:                var(--radius-s);
+	--embed-border-left:              4px solid var(--interactive-accent);
+	--embed-border-right:             none;
+	--embed-padding:                  0 0 0 var(--size-4-3);
+
+	--callout-border-width:           0px 0px 0px 4px;
+	--callout-border-opacity:         1;
+	--callout-radius:                 var(--radius-s);
+
+	--h1-weight:                      700;
+	--h2-weight:                      650;
+	--h3-weight:                      650;
+	--h4-weight:                      600;
+
+	--radius-s: 4px;
+	--radius-m: 6px;
+	--radius-l: 8px;
+}
+
+/* ==========================================================================
+   3. Dark theme
+   ========================================================================== */
+
+.theme-dark {
+	--color-base-00: var(--tain-bg);            /* #202730 */
+	--color-base-05: var(--tain-bg-alt);
+	--color-base-10: var(--tain-secondary);
+	--color-base-20: var(--tain-bg-alt);
+	--color-base-25: var(--tain-bg-hover);
+	--color-base-30: var(--tain-bg-active);
+	--color-base-35: var(--tain-border);
+	--color-base-40: var(--tain-faintest);
+	--color-base-50: var(--tain-faint);
+	--color-base-60: var(--tain-muted);
+	--color-base-70: var(--tain-muted);
+	--color-base-100: var(--tain-fg);
+
+	/* semantic named colors */
+	--color-red-rgb:     var(--tain-red_x);
+	--color-red:         var(--tain-red);
+	--color-orange-rgb:  var(--tain-tan_x);
+	--color-orange:      var(--tain-tan);
+	--color-yellow-rgb:  var(--tain-yellow_x);
+	--color-yellow:      var(--tain-yellow);
+	--color-green-rgb:   var(--tain-green_x);
+	--color-green:       var(--tain-green);
+	--color-cyan-rgb:    var(--tain-cyan_x);
+	--color-cyan:        var(--tain-cyan);
+	--color-blue-rgb:    var(--tain-blue_x);
+	--color-blue:        var(--tain-blue);
+	--color-purple-rgb:  var(--tain-magenta_x);
+	--color-purple:      var(--tain-magenta);
+	--color-pink-rgb:    var(--tain-bright-magenta_x);
+	--color-pink:        var(--tain-bright-magenta);
+
+	/* surfaces */
+	--background-primary:         var(--tain-bg);
+	--background-primary-alt:     var(--tain-bg-alt);
+	--background-secondary:       var(--tain-secondary);
+	--background-secondary-alt:   var(--tain-secondary-alt);
+	--background-modifier-border: var(--tain-border);
+	--background-modifier-border-hover: var(--tain-faintest);
+	--background-modifier-border-focus: var(--tain-tan-dim);
+	--background-modifier-hover:  rgba(var(--tain-fg_x), 0.055);
+	--background-modifier-active-hover: rgba(var(--tain-tan_x), 0.12);
+	--background-modifier-form-field: var(--tain-secondary);
+	--background-modifier-form-field-highlighted: var(--tain-bg-hover);
+	--background-modifier-box-shadow: rgba(0, 0, 0, 0.4);
+	--background-modifier-success: var(--tain-green);
+	--background-modifier-error:  var(--tain-red);
+	--background-modifier-error-rgb: var(--tain-red_x);
+	--background-modifier-error-hover: var(--tain-bright-red);
+
+	/* text */
+	--text-normal:   var(--tain-fg);
+	--text-muted:    var(--tain-muted);
+	--text-faint:    var(--tain-faint);
+	--text-faintest: var(--tain-faintest);
+	--text-on-accent: var(--tain-secondary-alt);
+	--text-on-accent-inverted: var(--tain-fg);
+	--text-error:    var(--tain-red);
+	--text-warning:  var(--tain-yellow);
+	--text-success:  var(--tain-green);
+	--text-selection: rgba(var(--tain-tan_x), 0.28);
+	--text-highlight-bg: rgba(var(--tain-tan_x), 0.30);
+	--text-highlight-bg-active: rgba(var(--tain-tan_x), 0.45);
+	--text-highlight-fg: var(--tain-fg);
+
+	/* accent / interactive */
+	--interactive-normal:         var(--tain-bg-alt);
+	--interactive-hover:          var(--tain-bg-hover);
+	--interactive-accent:         var(--tain-tan);
+	--interactive-accent-rgb:     var(--tain-tan_x);
+	--interactive-accent-hover:   var(--tain-bright-yellow);
+	--interactive-accent-hsl:     var(--accent-h), var(--accent-s), var(--accent-l);
+	--interactive-success:        var(--tain-green);
+
+	--text-accent:       var(--tain-tan);
+	--text-accent-hover: var(--tain-bright-yellow);
+	--link-color:        var(--tain-tan);
+	--link-color-hover:  var(--tain-bright-yellow);
+	--link-external-color:       var(--tain-cyan);
+	--link-external-color-hover: var(--tain-bright-cyan);
+	--link-unresolved-color:     var(--tain-faint);
+	--link-unresolved-opacity:   0.7;
+
+	--icon-color:        var(--tain-faint);
+	--icon-color-hover:  var(--tain-tan);
+	--icon-color-active: var(--tain-tan);
+	--icon-color-focused: var(--tain-fg);
+	--icon-opacity: 1;
+	--icon-opacity-hover: 1;
+
+	/* headings */
+	--h1-color: var(--tain-bright-red);
+	--h2-color: var(--tain-tan);
+	--h3-color: var(--tain-bright-green);
+	--h4-color: var(--tain-bright-blue);
+	--h5-color: var(--tain-bright-magenta);
+	--h6-color: var(--tain-bright-cyan);
+
+	--inline-title-color: var(--tain-tan);
+
+	--bold-color:   var(--tain-bright-yellow);
+	--italic-color: var(--tain-bright-blue);
+
+	/* code */
+	--code-normal:     var(--tain-cyan);
+	--code-background: var(--tain-secondary-alt);
+	--code-comment:    var(--tain-faint);
+	--code-function:   var(--tain-bright-green);
+	--code-important:  var(--tain-bright-red);
+	--code-keyword:    var(--tain-bright-magenta);
+	--code-operator:   var(--tain-muted);
+	--code-property:   var(--tain-bright-blue);
+	--code-punctuation: var(--tain-faint);
+	--code-string:     var(--tain-bright-yellow);
+	--code-tag:        var(--tain-bright-red);
+	--code-value:      var(--tain-bright-cyan);
+
+	/* tags */
+	--tag-color:            var(--tain-tan);
+	--tag-color-hover:      var(--tain-bright-yellow);
+	--tag-background:       rgba(var(--tain-tan_x), 0.12);
+	--tag-background-hover: rgba(var(--tain-tan_x), 0.22);
+	--tag-border-color:     transparent;
+	--tag-border-width:     0;
+
+	/* tables */
+	--table-header-background:       var(--tain-secondary);
+	--table-header-background-hover: var(--tain-bg-hover);
+	--table-header-color:            var(--tain-fg-dim);
+	--table-row-even-background:     var(--tain-bg);
+	--table-row-odd-background:      var(--tain-bg-alt);
+	--table-row-background-hover:    var(--tain-bg-hover);
+	--table-border-color:            var(--tain-border);
+	--table-selection:               rgba(var(--tain-tan_x), 0.16);
+	--table-selection-border-color:  var(--tain-tan-dim);
+	--table-drag-handle-color:       var(--tain-faint);
+
+	/* checkboxes */
+	--checkbox-color:        var(--tain-tan);
+	--checkbox-color-hover:  var(--tain-bright-yellow);
+	--checkbox-border-color: var(--tain-faintest);
+	--checkbox-border-color-hover: var(--tain-tan);
+	--checkbox-marker-color: var(--tain-secondary-alt);
+	--checklist-done-color:  var(--tain-faint);
+	--checklist-done-decoration: line-through;
+
+	/* nav / sidebar */
+	--nav-item-color:            var(--tain-muted);
+	--nav-item-color-hover:      var(--tain-fg);
+	--nav-item-color-active:     var(--tain-fg);
+	--nav-item-color-selected:   var(--tain-fg);
+	--nav-item-background-hover:  rgba(var(--tain-fg_x), 0.055);
+	--nav-item-background-active: rgba(var(--tain-tan_x), 0.14);
+	--nav-item-background-selected: rgba(var(--tain-tan_x), 0.20);
+	--nav-item-color-highlighted: var(--tain-tan);
+	--nav-file-tag:              rgba(var(--tain-yellow_x), 0.9);
+	--nav-collapse-icon-color:   var(--tain-faint);
+
+	/* tabs */
+	--tab-text-color:                  var(--tain-faint);
+	--tab-text-color-active:           var(--tain-muted);
+	--tab-text-color-focused:          var(--tain-muted);
+	--tab-text-color-focused-active:   var(--tain-fg);
+	--tab-text-color-focused-active-current: var(--tain-tan);
+	--tab-background-active:           var(--tain-bg);
+	--tab-outline-color:               var(--tain-border);
+	--tab-divider-color:               var(--tain-border);
+	--tab-font-size:                   var(--font-ui-small);
+
+	/* titlebar */
+	--titlebar-background:            var(--tain-secondary-alt);
+	--titlebar-background-focused:    var(--tain-secondary);
+	--titlebar-text-color:            var(--tain-faint);
+	--titlebar-text-color-focused:    var(--tain-tan);
+
+	/* scrollbars */
+	--scrollbar-bg: var(--tain-secondary);
+	--scrollbar-thumb-bg: var(--tain-faintest);
+	--scrollbar-active-thumb-bg: var(--tain-faint);
+
+	/* graph */
+	--graph-line:             var(--tain-border);
+	--graph-node:             var(--tain-muted);
+	--graph-node-focused:     var(--tain-tan);
+	--graph-node-tag:         var(--tain-green);
+	--graph-node-attachment: var(--tain-yellow);
+	--graph-node-unresolved:  var(--tain-faintest);
+
+	/* cursor & selection in editor */
+	--cursor-line-background: rgba(var(--tain-fg_x), 0.05);
+	--caret-color: var(--tain-tan);
+
+	/* dividers, embeds */
+	--divider-color: var(--tain-border);
+	--divider-color-hover: var(--tain-faintest);
+	--embed-border-start: 4px solid var(--interactive-accent);
+	--hr-color: var(--tain-border);
+
+	/* blockquote */
+	--blockquote-border-color: var(--tain-tan-dim);
+	--blockquote-background-color: var(--tain-bg-alt);
+
+	/* callouts */
+	--callout-default: var(--tain-blue_x);
+	--callout-info:    var(--tain-cyan_x);
+	--callout-todo:    var(--tain-blue_x);
+	--callout-tip:     var(--tain-green_x);
+	--callout-success: var(--tain-green_x);
+	--callout-question: var(--tain-yellow_x);
+	--callout-warning: var(--tain-yellow_x);
+	--callout-fail:    var(--tain-red_x);
+	--callout-error:   var(--tain-red_x);
+	--callout-bug:     var(--tain-magenta_x);
+	--callout-example: var(--tain-magenta_x);
+	--callout-quote:   var(--tain-faintest_x);
+
+	/* mermaid */
+	--mermaid-note:     var(--tain-blue);
+	--mermaid-loopline: var(--tain-tan);
+	--mermaid-exclude:  var(--tain-bg-active);
+	--mermaid-seqnum:   var(--tain-secondary-alt);
+
+	/* dataview */
+	--dataview-key: var(--tain-faint);
+	--dataview-key-background: rgba(var(--tain-tan_x), 0.14);
+	--dataview-value: var(--tain-faint);
+	--dataview-value-background: rgba(var(--tain-tan_x), 0.08);
+
+	/* status bar */
+	--status-bar-background: var(--tain-secondary-alt);
+	--status-bar-text-color: var(--tain-faint);
+	--status-bar-border-color: var(--tain-border);
+}
+
+/* ==========================================================================
+   4. Light theme
+   ========================================================================== */
+
+.theme-light {
+	--color-base-00: #f6f4f0;
+	--color-base-05: #f2efea;
+	--color-base-10: #ece8e1;
+	--color-base-20: #e3ded5;
+	--color-base-25: #d9d3c8;
+	--color-base-30: #cdc6ba;
+	--color-base-35: #c1b9ac;
+	--color-base-40: #a89f92;
+	--color-base-50: #7d848c;
+	--color-base-60: #5a6169;
+	--color-base-70: #3c434b;
+	--color-base-100: #1a2026;
+
+	--color-red-rgb:    var(--tain-red_x);
+	--color-red:        #8a6668;
+	--color-orange-rgb: var(--tain-tan_x);
+	--color-orange:     #916e3c;
+	--color-yellow-rgb: var(--tain-yellow_x);
+	--color-yellow:     #7d7a4e;
+	--color-green-rgb:  var(--tain-green_x);
+	--color-green:      #4e744f;
+	--color-cyan-rgb:   var(--tain-cyan_x);
+	--color-cyan:       #42706f;
+	--color-blue-rgb:   var(--tain-blue_x);
+	--color-blue:       #515a86;
+	--color-purple-rgb: var(--tain-magenta_x);
+	--color-purple:     #7c5a7c;
+	--color-pink-rgb:   var(--tain-bright-magenta_x);
+	--color-pink:       #8a5a8a;
+
+	--background-primary:         #f6f4f0;
+	--background-primary-alt:     #f2efea;
+	--background-secondary:       #ece8e1;
+	--background-secondary-alt:   #e3ded5;
+	--background-modifier-border: #d9d3c8;
+	--background-modifier-border-hover: #c1b9ac;
+	--background-modifier-border-focus: #967c58;
+	--background-modifier-hover:  rgba(26, 32, 38, 0.05);
+	--background-modifier-active-hover: rgba(150, 124, 88, 0.14);
+	--background-modifier-form-field: #f2efea;
+	--background-modifier-form-field-highlighted: #ece8e1;
+
+	--text-normal:   #1a2026;
+	--text-muted:    #4c535b;
+	--text-faint:    #7d848c;
+	--text-faintest: #a89f92;
+	--text-on-accent: #f6f4f0;
+	--text-selection: rgba(150, 124, 88, 0.25);
+	--text-highlight-bg: rgba(198, 166, 121, 0.45);
+	--text-highlight-fg: #1a2026;
+
+	--interactive-normal: #ece8e1;
+	--interactive-hover:  #e3ded5;
+	--interactive-accent: #967c58;
+	--interactive-accent-hover: #7d6647;
+	--interactive-accent-rgb: 150, 124, 88;
+
+	--text-accent:       #916e3c;
+	--text-accent-hover: #7d6647;
+	--link-color:        #916e3c;
+	--link-color-hover:  #7d6647;
+	--link-external-color:       #42706f;
+	--link-external-color-hover: #355a59;
+
+	--icon-color:        #7d848c;
+	--icon-color-hover:  #916e3c;
+	--icon-color-active: #916e3c;
+	--icon-color-focused: #1a2026;
+
+	--h1-color: #8a6668;
+	--h2-color: #916e3c;
+	--h3-color: #4e744f;
+	--h4-color: #515a86;
+	--h5-color: #7c5a7c;
+	--h6-color: #42706f;
+
+	--inline-title-color: #916e3c;
+	--bold-color:   #7d7a4e;
+	--italic-color: #515a86;
+
+	--code-normal:     #42706f;
+	--code-background: #ece8e1;
+	--code-comment:    #a89f92;
+	--code-function:   #4e744f;
+	--code-important:  #8a6668;
+	--code-keyword:    #7c5a7c;
+	--code-string:     #7d7a4e;
+	--code-property:   #515a86;
+	--code-value:      #42706f;
+
+	--tag-color:            #7d6647;
+	--tag-color-hover:      #5c4a33;
+	--tag-background:       rgba(150, 124, 88, 0.14);
+	--tag-background-hover: rgba(150, 124, 88, 0.24);
+
+	--table-header-background:   #ece8e1;
+	--table-row-even-background: #f6f4f0;
+	--table-row-odd-background:  #f2efea;
+	--table-row-background-hover: #e3ded5;
+	--table-border-color: #d9d3c8;
+
+	--checkbox-color:        #967c58;
+	--checkbox-color-hover:  #7d6647;
+	--checkbox-border-color: #a89f92;
+
+	--nav-item-color:             #4c535b;
+	--nav-item-color-hover:       #1a2026;
+	--nav-item-color-active:      #1a2026;
+	--nav-item-background-active: rgba(150, 124, 88, 0.16);
+	--nav-item-background-selected: rgba(150, 124, 88, 0.22);
+
+	--tab-text-color-focused-active-current: #916e3c;
+	--tab-background-active: #f6f4f0;
+
+	--titlebar-background:         #ece8e1;
+	--titlebar-background-focused: #e3ded5;
+	--titlebar-text-color-focused: #916e3c;
+
+	--graph-line:         #d9d3c8;
+	--graph-node:         #4c535b;
+	--graph-node-focused: #916e3c;
+	--graph-node-tag:     #4e744f;
+	--graph-node-attachment: #7d7a4e;
+
+	--cursor-line-background: rgba(26, 32, 38, 0.045);
+	--caret-color: #916e3c;
+
+	--divider-color: #d9d3c8;
+	--hr-color: #d9d3c8;
+	--blockquote-border-color: #a89f92;
+	--blockquote-background-color: #f2efea;
+
+	--callout-default: 143, 138, 172;
+	--callout-info:    138, 172, 171;
+	--callout-todo:    143, 138, 172;
+	--callout-tip:     138, 172, 139;
+	--callout-success: 138, 172, 139;
+	--callout-question: 172, 169, 138;
+	--callout-warning: 172, 169, 138;
+	--callout-fail:    172, 138, 140;
+	--callout-error:   172, 138, 140;
+	--callout-bug:     172, 138, 172;
+	--callout-example: 172, 138, 172;
+	--callout-quote:   168, 159, 146;
+
+	--status-bar-background: #ece8e1;
+	--status-bar-text-color: #4c535b;
+	--status-bar-border-color: #d9d3c8;
+}
+
+/* ==========================================================================
+   5. Editor / typography touch-ups
+   ========================================================================== */
+
+.markdown-rendered mark,
+.cm-highlight {
+	background-color: var(--text-highlight-bg);
+	color: var(--text-highlight-fg);
+	border-radius: var(--radius-s);
+	padding: 0 2px;
+}
+
+.cm-s-obsidian .cm-strong,
+.markdown-rendered strong {
+	color: var(--bold-color);
+	font-weight: var(--bold-weight);
+}
+
+.cm-s-obsidian .cm-em,
+.markdown-rendered em {
+	color: var(--italic-color);
+}
+
+/* inline code */
+.cm-s-obsidian .cm-inline-code,
+.markdown-rendered code:not(pre code) {
+	background-color: var(--code-background);
+	color: var(--code-normal);
+	border-radius: var(--radius-s);
+	padding: 0.12em 0.35em;
+	font-size: 0.9em;
+}
+
+/* horizontal rule */
+.markdown-rendered hr,
+.cm-s-obsidian hr {
+	border: none;
+	border-top: 1px solid var(--hr-color);
+}
+
+/* blockquote */
+.markdown-rendered blockquote {
+	border-inline-start: 3px solid var(--blockquote-border-color);
+	background-color: var(--blockquote-background-color);
+	border-radius: var(--radius-s);
+	padding-inline-start: var(--size-4-3);
+}
+
+/* active line */
+.cm-active {
+	background-color: var(--cursor-line-background) !important;
+}
+
+/* ==========================================================================
+   6. Tags
+   ========================================================================== */
+
+.cm-s-obsidian .cm-hashtag,
+.markdown-rendered a.tag,
+.tag {
+	color: var(--tag-color);
+	background-color: var(--tag-background);
+	border-radius: var(--tag-radius);
+	padding: var(--tag-padding-y) var(--tag-padding-x);
+	text-decoration: none;
+	border: none;
+}
+
+.cm-hashtag:hover,
+.markdown-rendered a.tag:hover {
+	color: var(--tag-color-hover);
+	background-color: var(--tag-background-hover);
+}
+
+/* ==========================================================================
+   7. Tables
+   ========================================================================== */
+
+.markdown-rendered table {
+	border-collapse: collapse;
+	border: 1px solid var(--table-border-color);
+}
+
+.markdown-rendered thead {
+	border-bottom: 2px solid var(--table-border-color);
+}
+
+.markdown-rendered th {
+	background-color: var(--table-header-background);
+	color: var(--table-header-color, var(--text-normal));
+	font-weight: 600;
+	border: 1px solid var(--table-border-color);
+}
+
+.markdown-rendered td {
+	border: 1px solid var(--table-border-color);
+}
+
+.markdown-rendered tbody tr:nth-child(even) {
+	background-color: var(--table-row-even-background);
+}
+
+.markdown-rendered tbody tr:nth-child(odd) {
+	background-color: var(--table-row-odd-background);
+}
+
+.markdown-rendered tbody tr:hover {
+	background-color: var(--table-row-background-hover);
+}
+
+/* ==========================================================================
+   8. Checkboxes
+   ========================================================================== */
+
+input[type="checkbox"] {
+	border: 1px solid var(--checkbox-border-color);
+	border-radius: var(--checkbox-radius);
+}
+
+input[type="checkbox"]:hover {
+	border-color: var(--checkbox-border-color-hover);
+}
+
+input[type="checkbox"]:checked {
+	background-color: var(--checkbox-color);
+	border-color: var(--checkbox-color);
+}
+
+/* ==========================================================================
+   9. Tabs & titlebar
+   ========================================================================== */
+
+.workspace-tab-header-inner-title {
+	font-weight: var(--tab-font-weight);
+}
+
+.workspace-tab-header.is-active {
+	box-shadow: inset 0 -2px 0 0 var(--interactive-accent);
+}
+
+.titlebar-button:hover {
+	background-color: var(--background-modifier-hover);
+}
+
+/* ==========================================================================
+   10. Mermaid
+   ========================================================================== */
+
+.mermaid .note {
+	fill: var(--mermaid-note) !important;
+}
+
+.mermaid .loopLine {
+	stroke: var(--mermaid-loopline) !important;
+}
+
+.mermaid .exclude-range {
+	fill: var(--mermaid-exclude) !important;
+}
+
+.mermaid .sequenceNumber {
+	fill: var(--mermaid-seqnum) !important;
+}
+
+/* ==========================================================================
+   11. Dataview
+   ========================================================================== */
+
+.dataview.inline-field-key {
+	border-top-left-radius: var(--radius-s);
+	border-bottom-left-radius: var(--radius-s);
+	padding: 0 4px;
+	font-family: var(--font-monospace);
+	font-size: var(--font-smaller);
+	color: var(--dataview-key) !important;
+	background-color: var(--dataview-key-background) !important;
+}
+
+.dataview.inline-field-value {
+	border-top-right-radius: var(--radius-s);
+	border-bottom-right-radius: var(--radius-s);
+	padding: 0 4px;
+	font-family: var(--font-monospace);
+	font-size: var(--font-smaller);
+	color: var(--dataview-value) !important;
+	background-color: var(--dataview-value-background) !important;
+}
+
+/* ==========================================================================
+   12. Scrollbars
+   ========================================================================== */
+
+::-webkit-scrollbar {
+	background-color: var(--scrollbar-bg);
+}
+
+::-webkit-scrollbar-thumb {
+	background-color: var(--scrollbar-thumb-bg);
+	border-radius: var(--radius-s);
+}
+
+::-webkit-scrollbar-thumb:hover,
+::-webkit-scrollbar-thumb:active {
+	background-color: var(--scrollbar-active-thumb-bg);
+}
+
+/* ==========================================================================
+   13. Selection
+   ========================================================================== */
+
+::selection {
+	background-color: var(--text-selection);
+}
