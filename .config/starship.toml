@@ -5,6 +5,10 @@ vicmd_symbol = "[➜](bold blue)"
 
 
 
+[cmd_duration]
+disabled = true
+
+
 [git_branch]
 format = 'on [$symbol$branch]($bold purple) '
 
