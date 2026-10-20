@@ -1,27 +1,37 @@
-
 [character]
 success_symbol = "[➜:](bold green)"
 error_symbol = "[➜:](bold white)"
-vicmd_symbol = "[➜:](bold blue)" 
+vicmd_symbol = "[➜](bold blue)"
+
+
+
+[git_branch]
+format = 'on [$symbol$branch]($bold purple) '
+
+[git_status]
+disabled = true
 
 [bun]
-format = "[ $version ](bold blue)"
-
-
+format = ':: [ $version](bold blue)'
 
 [aws]
+format = ':: [  ]($style)'
 symbol = "  "
 
 [buf]
+format = ':: [ ]($style)'
 symbol = " "
 
 [c]
-symbol = " "
+format = ':: [$symbol $version]($style)'
+symbol = ""
 
 [conda]
+format = ':: [ ]($style)'
 symbol = " "
 
 [dart]
+format = ':: [ ]($style)'
 symbol = " "
 
 [directory]
@@ -30,61 +40,76 @@ home_symbol = "~"
 truncation_length = 1
 
 [docker_context]
+format = ':: [ $context]($style)'
 symbol = " "
 
 [elixir]
 symbol = ""
-format = 'via [$symbol .ex]($style)'
-
+format = ':: [$symbol .ex]($style)'
 
 [elm]
+format = ':: [ ]($style)'
 symbol = " "
 
 [fossil_branch]
+format = ' :: [ $branch]($style)'
 symbol = " "
 
-
 [golang]
-symbol = " "
+symbol = ""
+format = ':: [$symbol $version]($style)'
 
 [guix_shell]
+format = ':: [ ]($style)'
 symbol = " "
 
 [haskell]
+format = ':: [$symbol $version]($style)'
 symbol = " "
 
 [haxe]
+format = ':: [$symbol $version]($style)'
 symbol = " "
 
 [hg_branch]
+format = ':: [ $branch]($style)'
 symbol = ""
 
 [hostname]
+format = ':: [$hostname]($style)'
 ssh_symbol = " "
 
 [java]
+format = ':: [ $version]($style)'
 symbol = " "
 
 [julia]
+format = ':: [ $version]($style)'
 symbol = " "
 
 [lua]
+format = ':: [ $version]($style)'
 symbol = " "
 
 [memory_usage]
+format = ':: [$symbol$ram]($style)'
 symbol = "󰍛 "
 
 [meson]
+format = ':: [󰔷 $version]($style)'
 symbol = "󰔷 "
 
 [nim]
+format = ':: [󰆥 $version]($style)'
 symbol = "󰆥 "
 
 [nix_shell]
+format = ':: [ $name]($style)'
 symbol = " "
 
 [nodejs]
-symbol = " "
+symbol = ""
+format = ':: [$symbol $version]($style)'
 
 [os.symbols]
 Alpaquita = " "
@@ -120,7 +145,7 @@ Pop = " "
 Raspbian = " "
 Redhat = " "
 RedHatEnterprise = " "
-Redox = "󰀘 "
+Redox = " "
 Solus = "󰠳 "
 SUSE = " "
 Ubuntu = " "
@@ -129,28 +154,36 @@ Windows = "󰍲 "
 
 [package]
 symbol = "󰏗 "
+format = ':: [$symbol$version]($style)'
+disabled = true
 
 [pijul_channel]
 symbol = " "
+format = ':: [$symbol$channel]($style)'
 
 [python]
 symbol = "󱔎 "
+format = ':: [$symbol $version]($style)'
 
 [rlang]
+format = ' :: [󰟔 $version]($style)'
 symbol = "󰟔 "
 
 [deno]
-format = 'via [ $version](green bold) '
+format = ':: [ $version](green bold)'
 
 [ruby]
 symbol = " "
+format = ':: [$symbol $version]($style)'
 
 [rust]
-symbol = " "
+symbol = ""
+format = ':: [$symbol $version]($style)'
 
 [scala]
 symbol = " "
-
+format = ' :: [$symbol $version]($style)'
 
 [ocaml]
-symbol = "  "
+symbol = " "
+format = ':: [$symbol$version]($style)'
