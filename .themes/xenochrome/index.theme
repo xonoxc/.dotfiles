@@ -1,0 +1,11 @@
+[Desktop Entry]
+Type=X-GNOME-Metatheme
+Name=xenochrome
+Comment=GTK themes inspired by epic vscode themes
+Encoding=UTF-8
+
+[X-GNOME-Metatheme]
+GtkTheme=xenochrome
+MetacityTheme=xenochrome
+IconTheme=Zafiro-icons
+ButtonLayout=:minimize,maximize,close
