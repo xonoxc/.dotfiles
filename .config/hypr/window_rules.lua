@@ -125,6 +125,78 @@ M.setup = function()
 		match = { namespace = "swaync-control-center" },
 		animation = "slide right",
 	})
+
+	-- swaync popup notifications: same slide-in from right / slide-out to right
+	hl.layer_rule({
+		name = "swaync-notif-slide-right",
+		match = { namespace = "swaync-notification-window" },
+		animation = "slide right",
+	})
+
+	-- Save this in your ~/.config/hypr/hyprland.lua (or rules submodule)
+	hl.window_rule({
+		name = "gimp-dialog-fix", -- Optional: Named rules can be dynamically toggled later
+		match = {
+			class = "^GIMP$",
+			title = "^(Export Image|Save Image|Open Image)$",
+		},
+		float = true,
+		size = { 800, 600 }, -- Takes a standard Lua table for width/height
+		center = true,
+	})
+
+	hl.window_rule({
+		name = "gimp-jpeg-export-fix",
+		match = {
+			class = "^GIMP$",
+			title = "^Export Image as .*$", -- This wildcard catches JPEG, PNG, WebP, etc.
+		},
+		float = true,
+		size = { 750, 480 }, -- Slightly shorter height to perfectly fit this specific tool layout
+		center = true,
+	})
+
+	-- Force GIMP dialogs/popups to float
+	hl.window_rule({
+		name = "gimp-float",
+		match = {
+			class = "^(gimp.*)$",
+		},
+		float = true,
+	})
+
+	hl.window_rule({
+		name = "gimp-splash-center",
+		match = {
+			class = "^(gimp.*)$",
+			title = "^(GIMP Startup)$",
+		},
+		center = true,
+	})
+
+	-- Keep the main GIMP window tiled, but float all child dialogs
+	hl.window_rule({
+		name = "gimp-dialogs-float",
+		match = {
+			class = "^(gimp.*)$",
+			float = true,
+		},
+		center = true,
+		-- Cap the size of floating dialogs so GTK widgets don't stretch vertically
+		size = { "<850", "<650" },
+	})
+
+	-- Specific rule for Export / Save / File dialogs if they still open too tall
+	hl.window_rule({
+		name = "gimp-export-dialog",
+		match = {
+			class = "^(gimp.*)$",
+			title = "^(Export Image.*|Save Image.*|Open Image.*)$",
+		},
+		float = true,
+		center = true,
+		size = { 750, 580 },
+	})
 end
 
 return M

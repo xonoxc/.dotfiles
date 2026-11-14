@@ -8,4 +8,4 @@ hl.env("HYPRCURSOR_SIZE", "20")
 hl.env("XCURSOR_SIZE", "20")
 
 hl.env("BROWSER", "helium-browser")
-hl.env("QT_QPA_PLATFORMTHEME", "qt5ct")
+hl.env("QT_QPA_PLATFORMTHEME", "hyprqt6engine")
