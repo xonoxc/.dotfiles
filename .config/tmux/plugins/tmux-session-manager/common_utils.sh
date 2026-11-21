@@ -71,7 +71,13 @@ stop_spinner() {
 # blocks), pointer/prompt = accent blue #7797b7, markers = accent green #8aac8b.
 select_session() {
 	local -r fzf_colors="bg:-1,fg:#bebebe,bg+:#242a30,fg+:#bebebe,hl:#8aac8b,hl+:#8aac8b,info:#565c62,pointer:#7797b7,marker:#8aac8b,prompt:#7797b7,spinner:#7797b7,header:#565c62,border:#2d3339"
-	local -r sessions=$(echo "$1" | sort | uniq)
+	local -r preserve_order="${2:-0}"
+	local sessions
+	if [[ "$preserve_order" == "1" ]]; then
+		sessions="$1"
+	else
+		sessions=$(echo "$1" | sort | uniq)
+	fi
 	if command -v fzf 1>/dev/null; then
 		echo "$sessions" | fzf --ansi --color="$fzf_colors" --padding 1
 	else

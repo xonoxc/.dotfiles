@@ -2,11 +2,6 @@
 cd "$(dirname "${BASH_SOURCE[0]}")" || exit
 source common_utils.sh
 
-if [[ $(get_tmux_option "@session-manager-disable-fzf-warning" "off") != "on" && ! $(command -v fzf) ]]; then
-	tmux display-message "Warning: fzf was not found in PATH. Recommended for tmux-session-manager. If that is intentional, you can disable this message."
-	exit
-fi
-
 declare key
 declare bindings
 
@@ -84,6 +79,17 @@ for key in $bindings; do
 		-s bg=#2b3136 \
 		-T '#[bg=#242a30,fg=#7797b7,bold] 󰗆 SWITCH SESSION 󰗆 ' \
 		\"FZF_DEFAULT_OPTS='--border=rounded' $(pwd)/switch_session.sh\""
+done
+
+# Switch to last session
+bindings=$(get_tmux_option "@session-manager-switch-last-key" "M-l")
+for key in $bindings; do
+	tmux bind-key "$key" run-shell "$(pwd)/switch_to_last.sh"
+done
+
+bindings=$(get_tmux_option "@session-manager-switch-last-key-root" "M-l")
+for key in $bindings; do
+	tmux bind-key -n "$key" run-shell "$(pwd)/switch_to_last.sh"
 done
 
 # Kill
