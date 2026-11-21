@@ -63,13 +63,13 @@ window#waybar {
 #workspaces,
 #custom-media,
 #custom-PBPbattery {
-  padding: 0.25rem 0.75rem;
-  margin: 1px 6px;
+  padding: 0rem 1rem;
+  margin: 1px 2px;
 
-  border: 2px dashed #39393f;
+  border: 1.9px dashed #39393f;
   background-color: #1a1a1a;
   border-radius: 0px;
-  box-shadow: 1px 1px 3px #111;
+  box-shadow: 2px 2px 4px #111;
 }
 
 /* Monochrome Colors */

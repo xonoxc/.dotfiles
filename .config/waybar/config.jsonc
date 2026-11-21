@@ -3,7 +3,7 @@
 	"layer": "top",
 	"position": "bottom",
 	"margin": 0,
-	"height": 30,
+	"height": 27,
 	"start_hidden": true,
 	"modules-left": [
 		"hyprland/workspaces",
@@ -25,22 +25,14 @@
 		"network",
 		"battery",
 	],
-	// Modules
-	"idle_inhibitor": {
-		"format": "{icon} ",
-		"format-icons": {
-			"activated": " ",
-			"deactivated": " "
-		}
-	},
 	"battery": {
 		"states": {
 			"warning": 30,
 			"critical": 15
 		},
-		"format": "{capacity}% {icon} ",
-		"format-charging": "{capacity}% 󰂄",
-		"format-plugged": "{capacity}% 󱐥",
+		"format": "{icon} {capacity}%",
+		"format-charging": "󰂄 {capacity}%",
+		"format-plugged": "󱐥 {capacity}%",
 		"format-icons": [
 			" ",
 			" ",
@@ -55,7 +47,7 @@
 	},
 	"clock": {
 		"interval": 10,
-		"format": " {:%H:%M} ",
+		"format": "  {:%H:%M}",
 		"tooltip-format": "{:%e %B %Y}"
 	},
 	"custom/updates": {
@@ -71,7 +63,7 @@
 		"format-icons": {
 			"default": "💀",
 			"performance": "💀",
-			"balanced": "🕸",
+			"balanced": " ",
 			"power-saver": ""
 		}
 	},
@@ -108,23 +100,24 @@
 		"tooltip": false
 	},
 	"hyprland/window": {
-		"format": "{}",
+		"format": " {}",
+		"fallback": "....Idle....??",
 		"max-length": 40
 	},
 	"hyprland/workspaces": {
-			"format": "{icon}",
-			"format-icons": {
-			  "1": "",
-			  "2": "",
-			  "3": "",
-			  "4": "",
-			  "5": "",
-			  "default": "",
-			  "active": "" 
-			},
-			"persistent-workspaces": {
-			  "*": [ 1, 2, 3, 4, 5 ]
-			}
+		"format": "{icon}",
+		"format-icons": {
+			"1": "",
+			"2": "",
+			"3": "",
+			"4": "",
+			"5": "",
+			"default": "",
+			"active": "" 
+		},
+		"persistent-workspaces": {
+			"*": [ 1, 2, 3, 4, 5 ]
+		}
 	},
 	"pulseaudio": {
 		"scroll-step": 1, // %, can be a float
@@ -188,4 +181,7 @@
 		"orientation": "horizontal",
 		"device": "intel_backlight"
 	},
+	"temperature": {
+		"format" : " {temperatureC}°C",
+	}
 }
