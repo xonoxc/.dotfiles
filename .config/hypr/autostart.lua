@@ -11,9 +11,6 @@ M.run = function()
 		hl.exec_cmd("hyprctl setcursor Breeze_Light 20")
 		hl.exec_cmd("swaync")
 		hl.exec_cmd("/usr/lib/pam_kwallet_init")
-
-		hl.exec_cmd("/usr/lib/pam_kwallet_init")
-
 		-- visuals
 		hl.exec_cmd("swww-daemon")
 		hl.exec_cmd("waytrogen --restore")

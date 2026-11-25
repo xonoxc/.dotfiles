@@ -61,3 +61,18 @@ hl.config({
 		preserve_split = true, -- You probably want this
 	},
 })
+
+hl.config({
+	decoration = {
+		shadow = {
+			enabled = true,
+			range = 4,
+			render_power = 3,
+			sharp = false,
+			color = "rgba(1a1a1aee)",
+			color_inactive = "rgba(1a1a1a88)", -- Optional: falls back to 'color' if omitted
+			offset = { 0, 0 },
+			scale = 1.0,
+		},
+	},
+})

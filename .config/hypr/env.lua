@@ -1,5 +1,4 @@
 -- Environment variables loaded by hyprland.
-
 hl.env("ELECTRON_OZONE_PLATFORM_HINT", "wayland")
 hl.env("WLR_NO_HARDWARE_CURSORS", "1")
 
